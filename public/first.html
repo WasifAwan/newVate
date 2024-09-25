@@ -1,0 +1,379 @@
+<!-- public/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head> 
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login Form</title>
+  <script src="https://www.gstatic.com/firebasejs/8.7.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.7.0/firebase-database.js"></script>
+  <script src="firebase-config.js"></script>
+  <style>
+    /* @import url('https://fonts.googleapis.com/css?family=Noto+Sans:400,400i,700,700i&subset=greek-ext'); */
+
+body{
+	margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+          /* height: 100vh; */
+          background-image: url('plain-bg.webp');
+            background-size: 100% 100%;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+
+}
+.text-center{
+	color:#fff;	
+	/* text-transform:uppercase; */
+    font-size: 23px;
+    margin: -50px 0 80px 0;
+    display: block;
+    text-align: center;
+}
+.box{
+	position:absolute;
+	left:50%;
+	top:50%;
+	transform: translate(-50%,-50%);
+  background-color: rgba(0, 0, 0, 0.89);
+	border-radius:3px;
+	padding:70px 100px;
+}
+.input-container{
+	position:relative;
+	margin-bottom:25px;
+}
+.input-container label{
+	position:absolute;
+	top:0px;
+	left:0px;
+	font-size:16px;
+	color:#fff;	
+
+	transition: all 0.5s ease-in-out;
+}
+.input-container input{ 
+  border:0;
+  /* border-bottom:1px solid #555;   */
+  border:none;	
+ outline:none;
+ border-bottom:1px solid #e74c3c;	
+  background:transparent;
+  width:100%;
+  padding:8px 0 5px 0;
+  font-size:16px;
+  color:#fff;
+}
+input{
+  background-color: transparent;
+  border:none;	
+ outline:none;
+ border-bottom:1px solid #e74c3c;	
+
+}
+.input-container input:focus{ 
+ border:none;	
+ outline:none;
+ border-bottom:1px solid #e74c3c;	
+}
+.btn{
+  color:#000000;
+  background-image: linear-gradient(147deg, #ffd21d 0%, #f73600 100%);
+   outline: none;
+    border: 0;
+
+	padding:10px 20px;
+	/* text-transform:uppercase; */
+	margin-top:50px;
+	border-radius:2px;
+	cursor:pointer;
+	position:relative;
+}
+
+
+    .error {
+      width: 250px;
+      color: red;
+      transform: translateY(-7.5px);
+    font-size: 0.8em;
+
+    }
+
+
+    @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
+*
+{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Quicksand', sans-serif;
+}
+body 
+{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  /* background: #000; */
+}
+section 
+{
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2px;
+  flex-wrap: wrap;
+  overflow: hidden;
+}
+
+section span 
+{
+  position: relative;
+  display: block;
+  width: calc(6.25vw - 2px);
+  height: calc(6.25vw - 2px);
+  /* background: #181818; */
+  z-index: 2;
+  transition: 1.5s;
+}
+
+
+section .signin
+{
+  position: absolute;
+    width: 300px;
+    /* background-color: rgba(0, 0, 0, 0.89); */
+    background-color: rgb(30 0 0);
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+    border-radius: 4px;
+    box-shadow: 0 15px 35px rgb(255 156 0);
+}
+section .signin .content 
+{
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 40px;
+}
+section .signin .content h2 
+{
+  font-size: 2em;
+  color: rgb(255, 255, 255);
+  /* text-transform: uppercase; */
+}
+section .signin .content .form 
+{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+section .signin .content .form .inputBox
+{
+  position: relative;
+  width: 100%;
+}
+section .signin .content .form .inputBox input 
+{
+  position: relative;
+  width: 100%;
+  background: #000000;
+  border: none;
+  outline: none;
+  padding: 25px 10px 7.5px;
+  border-radius: 4px;
+  color: #fff;
+  font-weight: 500;
+  font-size: 1em;
+}
+section .signin .content .form .inputBox i 
+{
+  position: absolute;
+  left: 0;
+  padding: 15px 10px;
+  font-style: normal;
+  color: #aaa;
+  transition: 0.5s;
+  pointer-events: none;
+}
+.signin .content .form .inputBox input:focus ~ i,
+.signin .content .form .inputBox input:valid ~ i
+{
+  transform: translateY(-7.5px);
+  font-size: 0.8em;
+  color: #fff;
+}
+.signin .content .form .links 
+{
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.signin .content .form .links a 
+{
+  color: #fff;
+  text-decoration: none;
+}
+
+.signin .content .form .inputBox input[type="submit"]
+{
+  
+  background-image: linear-gradient(147deg, #ffd21d 0%, #f73600 100%);
+	outline: none;
+    border: 0;
+    color: #fff;
+	padding:15px 20px;
+	/* text-transform:uppercase; */
+
+	border-radius:2px;
+	cursor:pointer;
+}
+input[type="submit"]:active
+{
+  opacity: 0.6;
+}
+
+.text-md{
+color:white;
+}
+
+/* Add this CSS to style the dropdown */
+.inputBox {
+  position: relative;
+  width: 100%;
+}
+
+.inputBox select {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #fff;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+.inputBox select:focus {
+  border-color: #007bff;
+}
+.dropdown{
+  background-color: #ffeba7;
+  cursor: pointer;
+  color: #102770;
+  box-shadow: 0 12px 35px 0 rgba(255,235,167,.15);
+}
+.option{
+  background-color: #000000;
+  color: white;
+  width: 100%;
+  height: 10px;
+  font-size: 20px;
+  font-weight: 200;
+  font-family: Arial, sans-serif;
+}
+
+.option1{
+  background-color: #131313;
+  color: white;
+  width: 100%;
+  height: 10px;
+  font-size: 20px;
+  font-weight: 200;
+  font-family: Arial, sans-serif;
+}
+.option:hover{
+background-color: #7f100c;
+} 
+
+::selection{
+  background-color: #f8d9e3;
+  color: #000000;
+}
+  </style>
+</head>
+<body>
+  <section>
+    <div class="signin"> 
+      <div class="content"> 
+        <h2>Select Team</h2> 
+        <form class="form" id="loginForm"> 
+          <div class="inputBox"> 
+            <!-- Removed input field for username -->
+            <!-- <label htmlFor="choose-topic" class="text-md">Select Team:</label> -->
+            <select id="choose-topic" class="contact--input text-md dropdown">
+              <option class="option" value="Table 1">Table 01</option>
+              <option class="option1" value="Table 2">Table 02</option>
+              <option class="option" value="Table 3">Table 03</option>
+              <option class="option1" value="Table 4">Table 04</option>
+              <option class="option" value="Table 5">Table 05</option>
+              <option class="option1" value="Table 6">Table 06</option>
+              <option class="option" value="Table 7">Table 07</option>
+              <option class="option1" value="Table 8">Table 08</option>
+              <option class="option" value="Table 9">Table 09</option>
+              <option class="option1" value="Table 10">Table 10</option>
+              <option class="option" value="Table 11">Table 11</option>
+              <option class="option1" value="Table 12">Table 12</option>
+              <option class="option" value="Table 13">Table 13</option>
+              <option class="option1" value="Table 14">Table 14</option>
+              <option class="option" value="Table 15">Table 15</option>
+              <option class="option1" value="Table 16">Table 16</option>
+              <option class="option" value="Table 17">Table 17</option>
+              <option class="option1" value="Table 18">Table 18</option>
+              <option class="option" value="Table 19">Table 19</option>
+              <option class="option1" value="Table 20">Table 20</option>
+            </select>
+          </div> 
+          <div class="inputBox"> 
+            <button type="submit" id="btn-submit" class="btn" value="Submit">Submit</button>
+          </div> 
+        </form> 
+      </div> 
+    </div>   
+  </section>
+
+  <script>
+
+
+    // const socket = io();
+    const database = firebase.database(); // Declare database here
+
+    document.getElementById('loginForm').addEventListener('submit', async (event) => {
+      event.preventDefault();
+
+      const selectedTeam = document.getElementById('choose-topic').value; // Get selected team
+      const errorSpan = document.getElementById('error');
+
+      // Save data to Firebase
+      const data = {
+        username: selectedTeam
+      };
+
+      database.ref('User_Details1').push(data);
+
+      console.log("Data added to Firebase:", data);
+
+      localStorage.setItem('loggedInUsername', selectedTeam);
+
+      // Redirect to 'buzzer.html'
+      window.location.href = 'buzzer.html';
+    });
+  </script>
+</body>
+</html>
