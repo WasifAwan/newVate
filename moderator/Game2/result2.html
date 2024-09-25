@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game2 Result</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poetsen+One&display=swap" rel="stylesheet">
+    <!-- <link rel="stylesheet" href="../modstyle.css"> -->
+    <link rel="stylesheet" href="../result.css">
+        
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<script src="../worker.js"></script>
+ 
+<style>
+    /* forward backward and main menu css  */
+
+.mainmenu{
+ position: absolute;
+ bottom: 10%;
+ left: 4%;
+}
+.forwardbtn{
+ background-image: url('../images/forward.png');
+ background-size: cover;
+ background-position: center;
+ border: none;
+ padding: 40px 40px;
+ background-color: transparent;
+ cursor: pointer;
+}
+.backwardbtn{
+ background-image: url('../images/backward.png');
+ background-size: cover;
+ background-position: center;
+ border: none;
+ padding: 40px 40px;
+ background-color: transparent;
+ cursor: pointer;
+ 
+}
+.forwardalign{
+ bottom: 10%;
+ /* padding-top: 40rem; */
+   position: absolute;
+   /* padding-right: 10rem; */
+   /* padding-left: 95rem; */
+   right: 0.5%;
+   display: flex;
+   flex-direction: column; 
+}
+.backwardbtn:active {
+ transform: translateY(2px); 
+}
+.forwardbtn:active {
+ transform: translateY(2px); 
+}
+</style>
+    
+</head>
+<body class="result2Body">
+    <div class="main">  
+        
+ <!-- FOR Sound👇 and Back -->
+ <div class="buttonsoundalign" >
+        
+    
+    <button id="volumeup" class="soundright" onclick="backSound()" style="display: block;">  <i class="fas fa-volume-xmark"></i></button>
+    <button id="volumedown" class="soundright" onclick="backSound2()" style="display: none;">  <i class="fas fa-volume-up"></i></button>
+    
+</div>
+<!-- FOR Sound☝and Back  -->
+
+        
+<div class="resultDiv" style="width: 100%; position: relative; height: 100vh;">
+    <div id="scoreboard" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+        <h1 style="text-align: center; margin-bottom: 1rem;">Game2 Score</h1>
+        <table id="scoreTable">
+            <thead >
+              
+            </thead>
+            <tbody id="scoreTableBody">
+                <!-- Rows will be inserted here by JavaScript -->
+            </tbody>
+        </table>
+    </div>
+</div>
+       
+
+
+     
+        <div class="forNextBtn"onclick="changeScreen()" >
+            <button class="menu-btn"  >
+
+            </button>
+        </div>
+
+         <!-- forward backward and main menu -->
+
+ <!-- <div class="mainmenu">
+    <a href="/moderator/main.html">
+      <button class="menu"></button>
+    </a>
+  </div> -->
+
+  <div class="forwardalign">
+    <button id="nextpagebtn" class="forwardbtn"></button>
+    <button onclick="back()" class="backwardbtn"></button>
+  </div>
+   <!-- End forward backward and main menu -->
+
+
+        <!-- <div id="show_result">
+            <button id="options-btn" class="bounce"  onclick="ShowResult()">See Results</button>
+        </div> -->
+
+        <!-- <div class="forNextBtn" style="width: 100%; height: auto; position: relative; text-align: center;">
+            <a href="./main.html">
+                <img src="./images/Option Board.png" style="display: block;" alt="">
+                <div class="text" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+                    <p>NEXT</p>
+                </div>
+            </a>
+        </div> -->
+
+        <!-- <div class="forBtn">
+            <button id="showListButton" class="btnBackground " onclick="changeScreen()" >Main Menu</button>
+        </div> -->
+   
+    <script>
+          var show_result = document.getElementById('show_result');
+var scoreboard = document.getElementById('scoreboard');
+// scoreboard.style.display = "none";
+
+document.addEventListener('DOMContentLoaded', function () {
+    // Function to display scores in the table
+    function displayScores() {
+        const scoreTableBody = document.getElementById('scoreTableBody');
+
+        // Extract team names and scores into an array of objects for Game 1
+        const scoresArray = [];
+        for (let i = 0; i < localStorage.length; i++) {
+            const teamKey = localStorage.key(i);
+            // Check if the team is for Game 2
+            if (teamKey.startsWith('Game2 Table')) {
+                const teamScore = parseInt(localStorage.getItem(teamKey)); // Convert score to integer
+                // Extract only the table number part
+                const tableNumber = teamKey.replace('Game2 Table', '').trim();
+                scoresArray.push({ tableNumber, teamScore });
+            }
+        }
+
+        // Sort the array in descending order by points
+        scoresArray.sort((a, b) => b.teamScore - a.teamScore);
+
+        // Clear existing table rows
+        scoreTableBody.innerHTML = '';
+
+         // Construct table rows based on sorted scores
+         scoresArray.slice(0, 5).forEach((item, index) => {
+                    let row = document.createElement('tr');
+
+                    // Create table data cells for table number and total score
+                    let tableNumberCell = document.createElement('td');
+                    tableNumberCell.textContent = `Table ${item.tableNumber}`;
+
+                    let totalScoreCell = document.createElement('td');
+                    totalScoreCell.textContent = item.teamScore;
+
+                    // Set background color for the total score cell
+                    totalScoreCell.style.backgroundImage = "linear-gradient(#96680C, rgb(199 178 57) )";
+                    totalScoreCell.style.color = "#fff"; 
+                    
+
+                    // Append cells to the row
+                    row.appendChild(tableNumberCell);
+                    row.appendChild(totalScoreCell);
+
+                    // Append the row to the tbody
+                    scoreTableBody.appendChild(row);
+                });
+    }
+
+    // Call the displayScores function to initially populate the table
+    displayScores();
+});
+
+function ShowResult() {
+    // scoreboard.style.display = "block";
+    show_result.style.display="none";
+
+    // const resultAudio = new Audio('../sounds/Applause.mp3');
+    // resultAudio.load();
+    // resultAudio.play();
+
+}
+        function changeScreen(){
+            window.location.href = "../main.html"
+        }
+        function back(){
+            window.location.href = "Game1.html"
+        }
+    </script>
+    <script src="../../moderator/sound.js"></script>
+
+    <!-- forward backward and main menu Script -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var audio = document.getElementById('clickSound');
+  
+      var startButtons = document.querySelectorAll('.btnBackground');
+      startButtons.forEach(function(startButton) {
+        startButton.addEventListener('click', function(event) {
+          event.preventDefault();
+          audio.play();
+        });
+      });
+  
+      document.querySelector('.forwardbtn').addEventListener('click', function(event) {
+       
+        window.location.href = "../main.html";
+        audio.play();
+      });
+  
+      document.querySelector('.backwardbtn').addEventListener('click', function(event) {
+        audio.play();
+      });
+  
+      document.querySelector('.menu').addEventListener('click', function(event) {
+        audio.play();
+      });
+    });
+    
+    function back() {
+        window.location.href='game2QuestionScreens.html';
+        console.log("done");
+    }
+    </script>
+    
+</body>
+</html>

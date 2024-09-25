@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vate Splash Screen</title>
+    <link rel="stylesheet" href="splash2.css">
+    <link rel="shortcut icon" href="./images/favicon.png" type="image/x-icon">
+ <style>
+    body,
+html {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    overflow: hidden
+}
+
+.animation01 {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    /* background-color: #035f00; */
+    background-image: url('../moderator/images/vate-Bg.webp');
+    background-attachment: fixed;
+    background-size: 100% 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.animation01 .line_content {
+    width: 100%;
+    height: 50%;
+    animation: animation01_content .3s ease-in forwards
+}
+
+.animation01 .line_content01 {
+    transform-origin: bottom
+}
+
+.animation01 .line_content02 {
+    transform-origin: top
+}
+
+.animation01 .line_wrapper {
+    width: 100%;
+    height: 100%
+}
+
+.animation01 .line_wrapper01 {
+    transform-origin: bottom;
+    animation: animation01_wrapper01 .8s ease-in-out .2s forwards
+}
+
+.animation01 .line_wrapper02 {
+    transform-origin: top;
+    animation: animation01_wrapper02 .8s ease-in-out .2s forwards
+}
+
+.animation01 .line01 {
+    width: 100%;
+    height: 50%;
+    background: linear-gradient(217deg, rgba(255,0,0,.8), rgba(255,0,0,0) 70.71%),
+            linear-gradient(127deg, rgba(0,255,0,.8), rgba(0,255,0,0) 70.71%),
+            linear-gradient(336deg, rgba(0,0,255,.8), rgba(0,0,255,0) 70.71%);
+}
+
+.animation01 .line02 {
+    width: 100%;
+    height: 50%;
+    background-color: #FD6918
+}
+
+@keyframes animation01_content {
+    0% {
+        transform: scale3d(1, 0, 1)
+    }
+
+    100% {
+        transform: scale3d(1, 1, 1)
+    }
+}
+
+@keyframes animation01_wrapper01 {
+    0% {
+        transform: translateY(0)
+    }
+
+    100% {
+        transform: translateY(-50vw)
+    }
+}
+
+@keyframes animation01_wrapper02 {
+    0% {
+        transform: translateY(0)
+    }
+
+    100% {
+        transform: translateY(50vw)
+    }
+}
+
+
+.animation04 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    z-index: 9998
+}
+
+.name_plate {
+    position: absolute;
+    top: 34%;
+    right: 0;
+    bottom: 0;
+    left: 30%;
+    width: 30vw;
+    height: 20vh;
+    /* margin: auto; */
+    transform-origin: center;
+    animation: name_plate 2s cubic-bezier(.165, .84, .44, 1) 0.8s forwards;
+    opacity: 0;
+}
+
+
+.name_plate img{
+    width: 39vw;
+    cursor: pointer;
+}
+@keyframes name_plate {
+    0% {
+        transform: scale3d(0, 1, 1);
+        opacity: 1
+    }
+
+    100% {
+        transform: scale3d(1, 1, 1);
+        opacity: 1
+    }
+}
+ </style>   
+</head>
+<body>
+    <body>
+        <div class="animation01">
+            <div class="line_content line_content01">
+                <div class="line_wrapper line_wrapper01">
+                    <div class="line01"></div>
+                    <div class="line02"></div>
+                </div>
+            </div>
+            <div class="line_content line_content02">
+                <div class="line_wrapper line_wrapper02">
+                    <div class="line02"></div>
+                    <div class="line01"></div>
+                </div>
+            </div>
+        </div>
+        <div class="animation02">
+            <div class="square">
+               
+            </div>
+        </div>
+         
+        <div class="animation04">
+            <div class="name_plate" onclick="startGame()">
+                <img src="../moderator/images/Vate Odyssey Start.webp" alt="" srcset="">
+            </div>
+        </div>
+
+        <script>
+            function startGame() {
+                window.location.href = "register.html";
+            }
+            
+        </script>
+    </body>
+</body>
+</html>

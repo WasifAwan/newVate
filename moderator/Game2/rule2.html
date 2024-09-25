@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../worker.js"></script>
+    <title>Rule 2</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<style>
+    
+    
+@import url('https://fonts.googleapis.com/css2?family=Yatra+One&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Merienda:wght@300..900&display=swap');
+    body{
+        background-image: url('../images/secondfinal.webp');
+        background-position: center;
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+    }
+    h1, h2, h3, h4, h5, h6{
+        margin: 0;
+        padding: 0;
+        margin-bottom: 0.5rem;
+        font-weight: 800;
+    }
+
+    h2{
+        font-size: 1.5rem;
+    }
+
+    .forBtn{
+        position: absolute;
+        bottom: 100px;
+        left: 50%;
+    }
+
+.merienda-para {
+  font-family: "Merienda", cursive;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 1vw;
+}
+
+.cinzel-heading {
+  font-family: "Cinzel", serif;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-style: normal;
+ 
+}
+.cinzel-heading2 {
+    font-size: 3.5vw;
+  font-family: "Cinzel", serif;
+  font-optical-sizing: auto;
+  font-weight: 900;
+  font-style: normal;
+}
+.yatra {
+  font-family: "Yatra One", system-ui;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 1rem;
+}
+
+.menu-btn {
+  /* background styles */
+  position: relative;
+  display: inline-block;
+  padding: 15px 25px;
+  background-color: #00ff4f;
+  background-image: linear-gradient(#1D6306, #90B71F, #1D6306);
+  /* margin: 0 17rem 0 17rem; */
+ left: 45vw;
+  /* text styles */
+  text-decoration: none;
+  color: #1a3600;
+  font-size: 25px;
+  font-family: sans-serif;
+  font-weight: 500;
+  border-radius: 3px;
+  box-shadow: 0px 1px 4px -2px #333;
+  text-shadow: 0px -1px #333;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  overflow: hidden; /* Add this to contain the shine effect within the button */
+  /* clip-path: polygon(4% 12%, 95% 12%, 100% 20%, 100% 87%, 96% 94%, 6% 94%, 0 89%, 0 19%); */
+
+  position: absolute;
+    bottom: 1.5vw;
+ 
+   
+}
+a{
+    text-decoration: none;
+    color: #000;
+}
+#scoreboard{
+  z-index: 10;
+}
+
+.menu-btn:after {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: calc(100% - 4px);
+  height: 50%;
+  background: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.2));
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.menu-btn:before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -50%; /* Start from the right */
+  width: 200%;
+  height: 200%;
+  background: rgba(255, 255, 255, 0.5);
+  opacity: 0;
+  transition: all 0.3s ease;
+  animation: shiny-btn1 3s ease-in-out infinite;
+}
+.btnBackground {
+  background-image: url('../images/resetbut-01.png');
+  background-size: cover; /* Adjust as needed */
+  background-position: center; /* Adjust as needed */
+  /* Additional styling */
+  padding: 17px 45px;
+  border: none;
+  color: rgb(0, 0, 0);
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  background-color: transparent;
+  cursor: pointer;
+  border-radius: 5px;
+  font-family: "Poetsen One", sans-serif;
+          letter-spacing: 0.2px;
+          margin-top: -16px;
+}
+
+/* Optional: Hover effect */
+.btnBackground:active {
+    /* opacity: 0.8; */
+    transform: translateY(2px); 
+}
+
+.buttonsoundalign {
+      /* justify-content: space-between; */
+    /* display: flex; */
+    position: absolute;
+    bottom: 1%;
+    /* width: 100%; */
+    padding: 0%;
+    z-index: 1000;
+    right: 10px;
+    /* margin: 0px; */
+    margin-right: -10px;
+}
+.soundright {
+  padding: 20px;
+  right: 20px;
+  /* rotate: 90deg; */
+  margin-right: -3px;
+  background-color: rgb(0 38 2);
+  border: none;
+  border-radius: 10px 0 0 10px;
+  /* box-shadow: 4px 6px 4px red; */
+  cursor: pointer;
+  color: white;
+}
+.soundleft {
+  padding: 20px;
+  right: 20px;
+  /* rotate: 90deg; */
+  margin-left: -7px;
+  background-color: rgb(0 38 2);
+  border: none;
+  border-radius: 10px 10px 0 0;
+  /* box-shadow: 4px 6px 4px red; */
+  color: white;
+  cursor: pointer;
+  /* padding-bottom: 5px; */
+}
+
+/* forward backward and main menu css  */
+
+.mainmenu{
+  position: absolute;
+  bottom: 10%;
+  left: 4%;
+}
+.forwardbtn{
+  background-image: url('../images/forward.png');
+  background-size: cover;
+  background-position: center;
+  border: none;
+  padding: 40px 40px;
+  background-color: transparent;
+  cursor: pointer;
+}
+.backwardbtn{
+  background-image: url('../images/backward.png');
+  background-size: cover;
+  background-position: center;
+  border: none;
+  padding: 40px 40px;
+  background-color: transparent;
+  cursor: pointer;
+  
+}
+.forwardalign{
+  bottom: 10%;
+  /* padding-top: 40rem; */
+    position: absolute;
+    /* padding-right: 10rem; */
+    /* padding-left: 95rem; */
+    right: 0.5%;
+    display: flex;
+    flex-direction: column; 
+}
+.backwardbtn:active {
+  transform: translateY(2px); 
+}
+.forwardbtn:active {
+  transform: translateY(2px); 
+}
+
+</style>
+  
+ 
+</head>
+<body class="secondgame">
+  <audio id="clickSound" src="../sound/click.mp3"></audio>
+    <!-- <div style="width: 100%; height: 200px; position: absolute; z-index: 1;">
+        <img src="../images/nav-img.webp" style="width: 100%;  object-fit: contain;"  alt="">
+    </div>
+     -->
+     <div class="buttonsoundalign">
+      <!-- <button class="soundleft" style="background-color: transparent; color: transparent; border: none;">back</button> -->
+      <button id="volumeup" class="soundright" onclick="backSound()" style="display: block;">  <i class="fas fa-volume-up"></i></button>
+      <button id="volumedown" class="soundright" onclick="backSound2()" style="display: none;">  <i class="fas fa-volume-xmark"></i></button>
+  </div>
+    <div class="">  
+        <div style="width: 100%; height: 95vh; display: flex; justify-content: center; position: relative; text-align: center; top: 5vw;">
+            <img style="display: block; width: 100%;" class="questionbackimage" src="../images/rulesBg.webp" alt="" srcset="">
+            
+            <div id="right" style="    position: absolute;
+            top: 51%;
+            left: 34%;
+            transform: translate(-35%, -60%);
+            color: #410505;
+            width: 66%;
+            width: 100%;
+            display: flex;
+            text-align: center;
+            justify-content: center;">
+              <div style="width: 66%;">
+              <div class="ruleGParentDiv">
+                    <h1 class="GH text-stroke1  cinzel-heading2 ">
+                        EFFICACY EXPEDITION</h1>
+                </div>
+    
+                <div class="GDiv">
+                    <div class="hDiv merienda-para " >
+                        <h1 class="hS   text-stroke2">1. Start at the entrance of the maze where the doctor/explorer begins their journey.</h1>
+                        <h1  class="hS text-stroke2">2. Navigate through the jungle maze by following the paths and avoiding dead ends.</h1>
+                        <h1  class="hS text-stroke2">3. Your goal is to reach the treasure box at the end of the maze, filled with all the VATES Creams.</h1>
+                        <h1  class="hS text-stroke2">4. Complete the maze within 5 minutes to win & get eligible for the second round of Differential Diagnosis Q/A session.</h1>
+                       
+                    </div>                        
+                </div>
+              
+            
+            </div>  
+            </div>  
+          </div>    
+         
+          <div class="forNextBtn" style="width: 100%; height: auto; position: relative; text-align: center; bottom: 10px;">
+            <button class="btnBackground"  onclick="startGame2()">
+Start Game
+             
+            </button>
+           
+        </a>
+        </div>
+
+
+        <!-- forward backward and main menu -->
+        <div class="mainmenu">
+          <a href="/moderator/main.html">
+            <button class="menu"></button>
+          </a>
+        </div>
+    
+        <div class="forwardalign">
+          <button id="nextpagebtn" class="forwardbtn"></button>
+          <button onclick="back()" class="backwardbtn"></button>
+        </div>
+         <!-- End forward backward and main menu -->
+
+      </div> 
+
+      <!-- <div class="buttonsoundalign" style="bottom: 55%;">
+        
+        <button onclick="back()" class="soundleft" >back</button>
+        
+        <button id="volumeup" class="soundright" onclick="backSound()" style="display: block;">  <i class="fas fa-volume-xmark"></i></button>
+        <button id="volumedown" class="soundright" onclick="backSound2()" style="display: none;">  <i class="fas fa-volume-up"></i></button>
+        
+    </div> -->
+    <script src="../../moderator/sound.js"></script>
+    <script>
+        function startGame2() {
+            window.location.href = "Game2.html";
+        }
+    </script>
+    <script>
+         const backgroundAudio = new Audio('../../moderator/sound/Background-Music.mp3');
+      function startGame2() {
+          var audio = document.getElementById('clickSound');
+          audio.play();
+          setTimeout(function() {
+              window.location.href = 'Game2.html';
+          }, 500);
+      }
+
+      document.addEventListener('DOMContentLoaded', function() {
+          var audio = document.getElementById('clickSound');
+          var startButtons = document.querySelectorAll('.btnBackground');
+          
+          startButtons.forEach(function(startButton) {
+              startButton.addEventListener('click', function(event) {
+                  audio.play();
+                  event.preventDefault();
+                  setTimeout(function() {
+                      window.location.href = 'Game2.html';
+                  }, 500);
+              });
+          });
+      });
+
+      function backSound() {
+            console.log("sound play");
+            backgroundAudio.play();
+            volumeup.style.display = 'none';
+            volumedown.style.display = 'block';
+        }
+
+        function backSound2() {
+            console.log("sound pause");
+            backgroundAudio.pause();
+            volumeup.style.display = 'block';
+            volumedown.style.display = 'none';
+        }
+       
+  </script>
+
+ <!-- forward backward and main menu Script -->
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    var audio = document.getElementById('clickSound');
+
+    var startButtons = document.querySelectorAll('.btnBackground');
+    startButtons.forEach(function(startButton) {
+      startButton.addEventListener('click', function(event) {
+        event.preventDefault();
+        audio.play();
+      });
+    });
+
+    document.querySelector('.forwardbtn').addEventListener('click', function(event) {
+     
+      window.location.href = "Game2.html";
+      audio.play();
+    });
+
+    document.querySelector('.backwardbtn').addEventListener('click', function(event) {
+      audio.play();
+    });
+
+    document.querySelector('.menu').addEventListener('click', function(event) {
+      audio.play();
+    });
+  });
+  
+  function back() {
+      window.location.href='../../moderator/main.html';
+      console.log("done");
+  }
+  </script>
+</body>
+</html>

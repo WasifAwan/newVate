@@ -1,0 +1,1043 @@
+@import url('https://fonts.googleapis.com/css2?family=Poetsen+One&display=swap');
+
+
+/* =================NEW CSS FOR VATE================= */
+.menu-btn {
+  /* background styles */
+  position: relative;
+  display: inline-block;
+  /* padding: 15px 2px; */
+  background-color: green;
+  /* for compatibility with older browsers */
+  background-image: linear-gradient(green, rgb(0, 255, 0));
+  margin: 0 17rem 0 17rem;
+  /* text styles */
+  text-decoration: none;
+  color: #000000;
+  font-size: 20px;
+  font-family: sans-serif;
+  font-weight: 400;
+  border-radius: 3px;
+  box-shadow: 0px 1px 4px -2px #333;
+  text-shadow: 0px -1px #333;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  overflow: hidden;
+  /* Add this to contain the shine effect within the button */
+}
+
+.menu-btn:after {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: calc(100% - 4px);
+  height: 50%;
+  background: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.2));
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.menu-btn:before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -50%;
+  /* Start from the right */
+  width: 200%;
+  height: 200%;
+  background: rgba(255, 255, 255, 0.5);
+  opacity: 0;
+  transition: all 0.3s ease;
+  animation: shiny-btn1 3s ease-in-out infinite;
+}
+
+@-webkit-keyframes shiny-btn1 {
+  0% {
+    -webkit-transform: scale(0) rotate(45deg);
+    opacity: 0;
+  }
+
+  80% {
+    -webkit-transform: scale(0) rotate(45deg);
+    opacity: 0.5;
+  }
+
+  81% {
+    -webkit-transform: scale(1) rotate(45deg);
+    opacity: 1;
+  }
+
+  100% {
+    -webkit-transform: scale(4) rotate(45deg);
+    opacity: 0;
+    right: -100%;
+    /* Move to the left */
+  }
+}
+
+@keyframes shiny-btn1 {
+  0% {
+    transform: scale(0) rotate(45deg);
+    opacity: 0;
+  }
+
+  80% {
+    transform: scale(0) rotate(45deg);
+    opacity: 0.5;
+  }
+
+  81% {
+    transform: scale(1) rotate(45deg);
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(4) rotate(45deg);
+    opacity: 0;
+    right: -100%;
+    /* Move to the left */
+  }
+}
+
+
+/* =================NEW CSS FOR VATE================= */
+
+body {
+  margin: 0;
+  padding: 0;
+  /* display: flex; */
+  /* height: 100vh; */
+  font-family: "Poetsen One", sans-serif;
+  /* font-weight: 400; */
+  font-style: normal;
+
+}
+
+footer {
+  position: absolute;
+  bottom: 0%;
+  left: 25vw;
+
+}
+
+footer p {
+  width: 60vw;
+}
+
+.rulebackground {
+  width: 100%;
+  background-image: url("../moderator/images/bg_rule.webp");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  background-size: 100% 100%;
+  overflow: hidden;
+}
+
+.ruleGGParentDiv {
+  width: 100%;
+  color: white;
+}
+
+.ruleGParentDiv {
+  width: 100%;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+}
+
+.GH {
+  font-size: 3rem;
+}
+
+.GDiv {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.hDiv {
+  width: 55%;
+}
+
+.nhDiv2 {
+  width: 80%;
+}
+
+.nhDiv {
+  width: 42%;
+}
+
+.hS {
+  font-size: 1.7rem;
+  font-weight: 100;
+  line-height: 1;
+}
+
+.phS {
+  font-size: 1rem;
+  font-weight: 100;
+  line-height: 1;
+}
+
+.hS2 {
+  font-size: 12px;
+  font-weight: 100;
+  color: #ccc6d0;
+}
+
+.vT {
+
+  transform: rotate(180deg);
+  writing-mode: vertical-lr;
+  text-align: center;
+  padding: 0 0 18rem 0;
+
+}
+
+footer p {
+  font-family: 'Comic Sans MS';
+  font-size: 12px !important;
+}
+
+#popupContainer {
+
+  position: absolute;
+  top: 16%;
+  left: 30%;
+}
+
+
+#popupContainer2 {
+
+  position: absolute;
+  top: 16%;
+  left: 30%;
+}
+
+
+.buttonsoundalign {
+  /* justify-content: space-between; */
+  /* display: flex; */
+  position: absolute;
+  bottom: 1%;
+  /* width: 100%; */
+  padding: 0%;
+  z-index: 1000;
+  right: 10px;
+  /* margin: 0px; */
+  margin-right: -10px;
+}
+
+.soundright {
+  padding: 20px;
+  right: 20px;
+  /* rotate: 90deg; */
+  margin-right: -3px;
+  background-color: rgb(0 38 2);
+  border: none;
+  border-radius: 10px 0 0 10px;
+  /* box-shadow: 4px 6px 4px red; */
+  cursor: pointer;
+  color: white;
+}
+
+.soundleft {
+  padding: 20px;
+  right: 20px;
+  /* rotate: 90deg; */
+  margin-left: -7px;
+  background-color: rgb(0 38 2);
+  border: none;
+  border-radius: 10px 10px 0 0;
+  /* box-shadow: 4px 6px 4px red; */
+  color: white;
+  cursor: pointer;
+  /* padding-bottom: 5px; */
+}
+
+.userList {
+  color: aliceblue;
+  width: 100%;
+
+}
+
+.buzzerpic {
+  /* width: 500px; */
+  height: auto;
+}
+
+
+#right {
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* background-color: #ddd; */
+  padding: 20px;
+  color: rgb(0, 0, 0);
+  font-size: 3rem;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  margin-top: 25px;
+  /* display: none; */
+}
+
+li {
+  margin-bottom: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  padding: 4px;
+  color: white;
+  font-size: 1.3rem;
+}
+
+.selected {
+  background-color: #6a4c1f;
+  background-image: linear-gradient(rgb(255, 185, 0), rgb(113 64 22));
+  ;
+  border: 4px solid rgb(255, 234, 0);
+  color: rgb(0, 0, 0);
+  font-size: 1.7rem;
+  /* Change the background color when selected */
+}
+
+
+
+#question {
+  margin-bottom: 0px;
+}
+
+.option {
+  margin-bottom: 0px;
+
+}
+
+.option button {
+  /* margin-right: 10px; */
+  width: 100%;
+}
+
+.questionText {
+  margin-top: 0.5rem;
+  margin-bottom: .2rem;
+  font-size: 1.8rem;
+  font-family: "Poetsen One", sans-serif;
+  font-weight: 100;
+  font-style: normal;
+}
+
+#tables-con {
+  margin-top: 20px;
+}
+
+.forBtn {
+  display: flex;
+  justify-content: center;
+}
+
+.mainbackground {
+  width: 100%;
+  background-image: url("../moderator/images/plain-bg.webp");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  background-size: 100% 100%;
+}
+
+.firstgame {
+  width: 100%;
+  background-image: url("../moderator/images/firstgame.webp");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  background-size: 100% 100%;
+}
+
+.secondgame {
+  width: 100%;
+  background-image: url("../moderator/images/secondfinal.webp");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  background-size: 100% 100%;
+}
+
+.thirdgame {
+  width: 100%;
+  background-image: url("../moderator/images/thirdfinal.webp");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  background-size: 100% 100%;
+}
+
+
+.mainbackgroundMissMatch {
+  width: 100%;
+  background-image: url("../moderator/images/Game2.webp");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  background-size: 100% 100%;
+}
+
+.mainbackgroundwordSearch {
+  width: 100%;
+  background-image: url("../moderator/images/Game3.webp");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  background-size: 100% 100%;
+}
+
+.maincontainer {
+  /* border: solid 2px rgb(248, 248, 248); */
+  width: 99%;
+  display: inline-flex;
+  padding-top: 7rem;
+
+}
+
+.tablebuzzer {
+  /* border: solid 2px green; */
+  width: 15%;
+  height: auto;
+
+}
+
+.timerdiv {
+  /* border: solid 2px green; */
+  width: 20%;
+}
+
+.questionConatiner {
+  /* border: solid 2px red; */
+  width: 75%;
+  /* margin-top: -36px;
+  margin-left: 2vw; */
+  margin-top: -15px;
+  margin-left: 12vw;
+}
+
+.banner {
+  width: 100%;
+  /* background-image: url("../moderator/images/game1banner.png"); */
+  display: flex;
+  /* justify-content: space-between; */
+  /* padding: 1rem 1rem 0 1rem; */
+  position: absolute;
+
+}
+
+.headerbanner {
+  /* height: 355px; */
+}
+
+/* .gsklogo{
+  width: 8vw;
+}
+.augmentinlogo{
+  width: 8vw;
+} */
+/* .gskalign{
+    align-content: flex-end;
+    margin-left: 1rem;
+  
+}
+.augmentinalign{
+  align-content: flex-end;
+  margin-right: 3rem;
+} */
+
+.userList {
+  position: relative;
+  display: inline-block;
+  /* Ensure the container fits its contents */
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  /* Allow clicks to pass through the overlay */
+}
+
+#list {
+  margin-top: 20px;
+  /* Remove any default margin */
+  padding: 0;
+  /* Remove any default padding */
+  list-style: none;
+  /* Remove bullet points */
+}
+
+.buzzerpic {
+  display: block;
+  /* width: 100%;  */
+  height: 22rem;
+  /* Maintain aspect ratio */
+}
+
+.timerpic {
+  display: block;
+  width: 100%;
+  /* Ensure the image takes up its full container width */
+  height: auto;
+  /* Maintain aspect ratio */
+}
+
+.questionbackimage {
+  /* width: 100%; */
+  width: 97%;
+
+}
+
+#options {
+  display: grid;
+  /* justify-content: space-evenly; */
+  grid-template-columns: auto auto;
+  gap: 10px;
+  padding-top: 2rem;
+  /* margin: 5px; */
+  padding: 9px 30px;
+  font-size: 20px;
+}
+
+.option {
+  cursor: pointer;
+  margin: 5px;
+  padding: 10px 20px;
+  font-size: 47px;
+  background-color: #ffffff;
+  color: rgb(74, 0, 0);
+  font-family: "Poetsen One", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  border-radius: 70px;
+  border: none;
+  display: flex;
+  align-items: center;
+  flex-direction: row-reverse;
+  justify-content: space-evenly;
+}
+
+button {
+  margin-left: 10px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.next-backbuttonalign {
+  /* width: 71%;
+ display: flex;
+ justify-content: space-between;
+ margin-top: -40px; */
+  width: 50%;
+  display: flex;
+  justify-content: space-between;
+  margin-top: -40px;
+  position: absolute;
+  z-index: 1;
+  top: 90%;
+}
+
+.newNext-backbuttonalign {
+  width: 80%;
+  display: flex;
+  justify-content: space-between;
+  /* margin-top: -20px; */
+  position: absolute;
+  bottom: 25%;
+}
+
+.nextalign {
+  margin-right: 7rem;
+}
+
+.backalign {
+  margin-left: 7rem;
+}
+
+
+/* Add this to your CSS */
+.btnBackground {
+  background-image: url('../moderator/images/resetbut-01.png');
+  background-size: cover;
+  /* Adjust as needed */
+  background-position: center;
+  /* Adjust as needed */
+  /* Additional styling */
+  padding: 15px 43px;
+  ;
+  border: none;
+  color: rgb(0, 0, 0);
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  background-color: transparent;
+  cursor: pointer;
+  border-radius: 5px;
+
+  font-family: "Poetsen One", sans-serif;
+
+  letter-spacing: 0.2px;
+}
+
+
+
+
+/* Optional: Hover effect */
+.btnBackground:active {
+  /* opacity: 0.8; */
+  transform: translateY(2px);
+}
+
+
+/* New Effect on Options 👇 New Effect on Options New Effect on Options */
+.newOption {
+
+  cursor: pointer;
+  padding: 10px 0px;
+
+}
+
+
+.newOption {
+
+  color: #000000;
+  --border-width: 5px;
+  width: 18vw;
+  margin: 5px;
+  --radius: 24px;
+  background-color: transparent;
+  position: relative;
+  border-radius: var(--radius);
+  border: var(--border-width) solid transparent;
+  font-family: "Poetsen One", sans-serif;
+  ;
+  /* font-weight: 200; */
+  font-style: normal;
+  cursor: pointer;
+  padding: 10px 0px;
+  font-size: 1.4em;
+  border-radius: 10px;
+  font-weight: 500;
+}
+
+.newOption::before {
+  content: " ";
+  position: absolute;
+  inset: calc(var(--border-width) * -1);
+  z-index: -1;
+  border: inherit;
+  border-radius: inherit;
+  background-image: conic-gradient(from var(--angle), #574206 80%, #fff6d1 88%, #fff9d1 92%, #573a05 100%);
+  background-origin: border-box;
+  -webkit-mask:
+    linear-gradient(black, black) content-box,
+    linear-gradient(black, black);
+  mask: linear-gradient(black, black),
+    linear-gradient(black, black);
+  -webkit-mask-clip: content-box, border-box;
+  mask-clip: content-box, border-box;
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  animation: spin 3s linear infinite;
+}
+
+@supports not (background: paint(something)) {
+  .media-object::before {
+    background-image: conic-gradient(#381D6A 80%, #E0D1FF 88%, #E0D1FF 92%, #381D6A 100%);
+  }
+}
+
+
+@property --angle {
+  syntax: "<angle>";
+  inherits: true;
+  initial-value: 0turn;
+}
+
+@keyframes spin {
+  to {
+    --angle: 1turn;
+  }
+}
+
+/* bubble animation 👇  bubble animation  bubble animation  bubble animation  bubble animation   */
+/* bubble animation 👇  bubble animation  bubble animation  bubble animation  bubble animation   */
+/* bubble animation 👇  bubble animation  bubble animation  bubble animation  bubble animation   */
+/* bubble animation 👇  bubble animation  bubble animation  bubble animation  bubble animation   */
+
+
+
+.bubbly-button {
+  font-family: "Poetsen One", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  display: inline-block;
+  font-size: 1em;
+  padding: 1em 2em;
+  margin-top: 100px;
+  margin-bottom: 60px;
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: #ff0081;
+  color: #fff;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  transition: transform ease-in 0.1s, box-shadow ease-in 0.25s;
+  box-shadow: 0 2px 25px rgba(255, 0, 130, 0.5);
+}
+
+.bubbly-button:focus {
+  outline: 0;
+}
+
+.bubbly-button:before,
+.bubbly-button:after {
+  position: absolute;
+  content: '';
+  display: block;
+  width: 140%;
+  height: 100%;
+  left: -20%;
+  z-index: -1000;
+  transition: all ease-in-out 0.5s;
+  background-repeat: no-repeat;
+}
+
+.bubbly-button:before {
+  display: none;
+  top: -75%;
+  background-image:
+    radial-gradient(circle, #ff0081 20%, transparent 20%),
+    radial-gradient(circle, transparent 20%, #ff0081 20%, transparent 30%),
+    radial-gradient(circle, #ff0081 20%, transparent 20%),
+    radial-gradient(circle, #ff0081 20%, transparent 20%),
+    radial-gradient(circle, transparent 10%, #ff0081 15%, transparent 20%),
+    radial-gradient(circle, #ff0081 20%, transparent 20%),
+    radial-gradient(circle, #ff0081 20%, transparent 20%),
+    radial-gradient(circle, #ff0081 20%, transparent 20%),
+    radial-gradient(circle, #ff0081 20%, transparent 20%);
+  background-size: 10% 10%, 20% 20%, 15% 15%, 20% 20%, 18% 18%, 10% 10%, 15% 15%, 10% 10%, 18% 18%;
+}
+
+.bubbly-button:after {
+  display: none;
+  bottom: -75%;
+  background-image:
+    radial-gradient(circle, #ff0081 20%, transparent 20%),
+    radial-gradient(circle, #ff0081 20%, transparent 20%),
+    radial-gradient(circle, transparent 10%, #ff0081 15%, transparent 20%),
+    radial-gradient(circle, #ff0081 20%, transparent 20%),
+    radial-gradient(circle, #ff0081 20%, transparent 20%),
+    radial-gradient(circle, #ff0081 20%, transparent 20%),
+    radial-gradient(circle, #ff0081 20%, transparent 20%);
+  background-size: 15% 15%, 20% 20%, 18% 18%, 20% 20%, 15% 15%, 10% 10%, 20% 20%;
+}
+
+.bubbly-button:active {
+  transform: scale(0.9);
+  background-color: #e60073;
+  /* Slightly darkened color */
+  box-shadow: 0 2px 25px rgba(255, 0, 130, 0.2);
+}
+
+.bubbly-button.animate:before {
+  display: block;
+  animation: topBubbles ease-in-out 0.75s forwards;
+}
+
+.bubbly-button.animate:after {
+  display: block;
+  animation: bottomBubbles ease-in-out 0.75s forwards;
+}
+
+@keyframes topBubbles {
+  0% {
+    background-position: 5% 90%, 10% 90%, 10% 90%, 15% 90%, 25% 90%, 25% 90%, 40% 90%, 55% 90%, 70% 90%;
+  }
+
+  50% {
+    background-position: 0% 80%, 0% 20%, 10% 40%, 20% 0%, 30% 30%, 22% 50%, 50% 50%, 65% 20%, 90% 30%;
+  }
+
+  100% {
+    background-position: 0% 70%, 0% 10%, 10% 30%, 20% -10%, 30% 20%, 22% 40%, 50% 40%, 65% 10%, 90% 20%;
+    background-size: 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%;
+  }
+}
+
+@keyframes bottomBubbles {
+  0% {
+    background-position: 10% -10%, 30% 10%, 55% -10%, 70% -10%, 85% -10%, 70% -10%, 70% 0%;
+  }
+
+  50% {
+    background-position: 0% 80%, 20% 80%, 45% 60%, 60% 100%, 75% 70%, 95% 60%, 105% 0%;
+  }
+
+  100% {
+    background-position: 0% 90%, 20% 90%, 45% 70%, 60% 110%, 75% 80%, 95% 70%, 110% 10%;
+    background-size: 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%;
+  }
+}
+
+
+.menu {
+
+  background-image: url('../moderator/images/Vector.png');
+  background-size: cover;
+  /* Adjust as needed */
+  background-position: center;
+  /* Adjust as needed */
+  /* Additional styling */
+  /* padding: 35px 105px; */
+  padding: 21px 64px;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+
+}
+
+.menu:active {
+  transform: translateY(2px);
+}
+
+.mainmenu {
+  position: absolute;
+  bottom: 1%;
+  left: 44%;
+}
+
+.forwardbtn {
+  background-image: url('../moderator/images/forward.png');
+  background-size: cover;
+  background-position: center;
+  border: none;
+  padding: 40px 40px;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.backwardbtn {
+  background-image: url('../moderator/images/backward.png');
+  background-size: cover;
+  background-position: center;
+  border: none;
+  padding: 40px 40px;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.forwardalign {
+  bottom: 5%;
+  /* padding-top: 40rem; */
+  position: absolute;
+  /* padding-right: 10rem; */
+  /* padding-left: 95rem; */
+  right: 7%;
+  display: flex;
+  flex-direction: column;
+}
+
+.backwardbtn:active {
+  transform: translateY(2px);
+}
+
+.forwardbtn:active {
+  transform: translateY(2px);
+}
+
+.questionshape {
+  /* border: red 2px solid; */
+  background-image: linear-gradient(#775825, #92640d);
+  border-width: 8px;
+  border-style: solid;
+  border-image: linear-gradient(to right, #93650d, #efba33) 1;
+  color: #f8f8f8;
+}
+
+
+
+
+
+/* timmer */
+body {
+  margin: 0;
+
+}
+
+*,
+:after,
+:before {
+  box-sizing: border-box;
+}
+
+.pull-left {
+  float: left;
+}
+
+.pull-right {
+  float: right;
+}
+
+.clearfix:after,
+.clearfix:before {
+  content: '';
+  display: table;
+}
+
+.clearfix:after {
+  clear: both;
+  display: block;
+}
+
+.clock:before,
+.count:after {
+  content: '';
+  position: absolute;
+}
+
+/* .clock-wrap {
+  margin: auto;
+  width: 240px;
+  height: 240px;
+  margin-top: 51vh;
+  position: relative;
+  border-radius: 50px;
+ 
+} */
+
+.clock-wrap {
+  /* margin: auto;
+  width: 240px;
+  height: 240px;
+  margin-top: 51vh; */
+  /* position: relative; */
+  border-radius: 50px;
+
+}
+
+.clock {
+  top: 0.7%;
+  left: 47%;
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  position: absolute;
+  /* margin-top: -90px;
+  margin-left: -90px; */
+  background-color: #F3FF90;
+  /* border: solid 4px #F3FF90; */
+}
+
+/* .clock:before {
+  top: 50%;
+  left: 50%;
+  width: 150px;
+  height: 150px;
+  margin-top: -74px;
+  margin-left: -74px;
+  border-radius: inherit;
+  background-color: #005e18;
+  box-shadow: 0 0 15px rgba(0, 0, 0, .15), 0 0 3px rgba(255, 255, 255, .75) inset;
+} */
+.clock:before {
+
+  top: 84%;
+  left: 85%;
+  width: 90px;
+  height: 90px;
+  margin-top: -82px;
+  margin-left: -82px;
+  border-radius: inherit;
+  background-color: #005e18;
+  box-shadow: 0 0 15px rgba(0, 0, 0, .15), 0 0 3px rgba(255, 255, 255, .75) inset;
+}
+
+/* .count {
+  width: 100%;
+  color: #fff;
+  height: 100%;
+  padding: 50px;
+  font-size: 5rem;
+  font-weight: 500;
+  line-height: 42px;
+  position: absolute;
+  text-align: center;
+  left: 0px;
+  top: 15px;
+} */
+.count {
+  width: 100%;
+  color: #fff;
+  height: 100%;
+  /* padding: 50px; */
+  font-size: 4rem;
+  font-weight: 500;
+  /* line-height: 42px; */
+  position: absolute;
+  text-align: center;
+  left: 0;
+  top: 10px;
+  cursor: pointer;
+
+
+}
+
+.count:after {
+  width: 100%;
+  display: block;
+  font-size: 18px;
+  font-weight: 300;
+  line-height: 18px;
+  text-align: center;
+  position: relative;
+  cursor: pointer;
+}
+
+.count.sec:after {
+  content: '';
+}
+
+/* .action .input-btn {
+  background-image: url(../moderator/images/resetbut-01.png);
+  background-size: cover;
+  background-position: center;
+  padding: 20px 70px;
+  border: none;
+  color: rgb(0, 0, 0);
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  background-color: transparent;
+  cursor: pointer;
+  border-radius: 5px;
+  font-family: "Poetsen One", sans-serif;
+  letter-spacing: 0.2px;
+} */
+
+.tbl {
+  display: table;
+  width: 100%;
+}
+
+.tbl .col {
+  display: table-cell;
+}

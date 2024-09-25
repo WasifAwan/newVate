@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="../modstyle.css">
+  <link rel="stylesheet" href="../timer.css">
+  <link rel="stylesheet" href="../menu.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poetsen+One&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <title>Game 1</title>
+  <script src="../worker.js"></script>
+  <style>
+    /* Hide options by default */
+#options {
+  display: none;
+}
+    .football_anim {
+      transition: transform 3s ease;
+      /* Define a CSS transition for the transform property */
+    }
+    *{
+        scrollbar-width: thin;
+    scrollbar-color: #ad0000 #ffb900;
+
+    }
+
+    .light{
+        background-color: #ffb900;
+    }
+   
+    select:active{
+        background: #000;
+    }
+
+    .select2-container--default .select2-results__option--highlighted[aria-selected] {
+        background-color:green;
+
+}
+
+/* turn it off completely */
+select:active, select:hover {
+  outline: none
+}
+
+/* make it red instead (with with same width and style) */
+select:active, select:hover {
+  outline-color: red
+}
+.blink {
+      animation: blinker 1s linear infinite;
+    }
+
+    @keyframes blinker {
+      50% {
+        opacity: 0;
+      }
+    }
+
+    .forwardalign {
+    bottom: 10%;
+    /* padding-top: 40rem; */
+    position: absolute;
+    /* padding-right: 10rem; */
+    /* padding-left: 95rem; */
+    right: 0.5%;
+    display: flex;
+    flex-direction: column;
+}
+
+  </style>
+
+</head>
+
+<body class="firstgame" style="overflow: hidden;">
+  <audio id="clickSound" src="../sound/click.mp3"></audio>
+   <!-- FOR Sound👇 and Back -->
+   <div class="buttonsoundalign">
+
+ 
+
+    <button id="volumeup" class="soundright" onclick="backSound()" style="display: block;"> <i
+        class="fas fa-volume-up"></i></button>
+    <button id="volumedown" class="soundright" onclick="backSound2()" style="display: block;"> <i
+        class="fas fa-volume-xmark"></i></button>
+
+  </div>
+  <!-- FOR Sound☝and Back  -->
+
+  
+    <div class="clock-wrap input-btn" data-action="start">
+      <div class="clock pro-0">
+        <span class="count">15</span>
+      </div>
+    </div>
+ 
+ 
+
+  <div class="maincontainer" style="justify-content: center;">
+
+
+    <div class="questionConatiner">
+      <div style=" height: auto; position: relative; text-align: center;">
+        <img style="display: block; height: 78vh;" class="questionbackimage" src="../images/Back.webp" alt="" srcset="">
+
+
+
+        <div  style="position: absolute; top: 50%; left: 50%; transform: translate(-84%, -50%); width: 46vw;">
+
+          <div style="display: inline-flex; align-items: center; justify-content: center; margin-left: 4.8vw;">
+            <div >
+              <div id="question" class="questionshape">
+                <!-- <h3 style="margin-bottom: 0rem !important;">Question:</h3> -->
+                <h3 class="questionText" id="questionText"></h3>
+              </div>
+
+              
+              <div id="options" >
+                <button class="newOption ">Options 1</button>
+                <button class="newOption">Options 2</button>
+                <button class="newOption">Options 3</button>
+                <button class="newOption">Options 4</button>
+              </div>
+              <div>
+                <!-- View button -->
+                <button id="viewButton" class="btnBackground">See Options</button>
+              </div>
+            </div>
+            
+            <h1 id="result-btn" >It's time to see the score</h1>
+          </div>
+
+
+          
+
+        </div>
+        <div  style="position: absolute; top: 50%; left: 50%; transform: translate(105%, -50%);">
+          <div class="buzzer-outer">
+            <div class="tablebuzzer" style="width: 100%;">
+
+            <!-- <img style="display: block;" class="buzzerpic" src="../images/newBuzzerBoard.png"> -->
+              <div class="buzzerpic" style="background-color: transparent; height: 30vh;  ">
+
+                <ul id="list" class="userListContent">
+                </ul>
+
+              </div>
+
+              <div class="forBtn">
+                <button id="showListButton" class="btnBackground ">Start Buzzer</button>
+              </div>
+
+
+           </div>
+          </div>
+        </div>
+
+
+
+
+     
+
+
+      <div class="next-backbuttonalign" style="width: 65%; position: absolute; top: 99%;">
+        <button class="btnBackground backalign" onclick="resetScore();">Reset Score</button>
+
+        <button class="btnBackground nextalign" id="nextQuestion">Next Question</button>
+      </div>
+
+    </div>
+
+
+    <!-- <div style="display: flex; justify-content: center; position: absolute; bottom: 5%;">
+      <img src="../images/Brands.webp" style="width: 80%;" alt="">
+    </div> -->
+
+    <!-- For 👇 GIFs  For GIFs  For GIFs  For GIFs  For GIFs  For GIFs -->
+
+    <div id="popupContainer" style="display: none;">
+      <!-- <div id="popupContainer" style="display: block;"> -->
+      <div id="gifPopup">
+
+        <img id="gifImage" src="../images/wrong-size-change.gif" alt="GIF Image">
+      </div>
+    </div>
+
+    <div id="popupContainer2" style="display: none;">
+      <!-- <div id="popupContainer2" style="display: block;"> -->
+      <div id="gifPopup2">
+
+        <img id="gifImage2" src="../images/correct-size-change.gif" alt="GIF Image">
+      </div>
+    </div>
+
+    <!-- <div class="mainmenu">
+      <a href="/moderator/main.html">
+        <button class="menu"></button>
+      </a>
+    </div> -->
+
+    <div class="forwardalign">
+      <button id="nextpagebtn" class="forwardbtn"></button>
+      <button onclick="back()" class="backwardbtn"></button>
+    </div>
+
+    <!-- For ☝ GIFs  For GIFs  For GIFs  For GIFs  For GIFs  For GIFs -->
+
+
+     <!-- For Doctor 👇 GIF  -->
+     <div style="position: absolute; left: .5%; bottom: 1%;">
+      <img src="../images/Doctor.gif" alt="Doctor GIF" id="doctorGif" style="width: 22vw;">
+      
+     </div>
+  </div>
+  <footer>
+    <p style="font-size: 12px; color: white;">Ref: Kim WB, et al. Can Fam Physician. 2017;63(4):278-285.</p>
+</footer>
+
+  <script src="../timer.js"></script>
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+ var viewButton = document.getElementById("viewButton");
+    var popupContainer = document.getElementById('popupContainer');
+    var popupContainer2 = document.getElementById('popupContainer2');
+
+    var list = document.getElementById("list");
+    var buttons = document.querySelectorAll("#tables-con button");
+    var limit = 4;
+    var count = 0;
+    var buzzerStarted = false;
+    const socket = io();
+    var changeStaredText = document.getElementById("showListButton")
+
+
+    const wrongAudio = new Audio('../sound/wrong-answer-Buzzer.mp3'); // Load the wrong answer sound file
+    const successAudio = new Audio('../sound/Winning.mp3'); // Load the success sound file
+
+    const showListButton = document.getElementById("showListButton")
+    showListButton.addEventListener("click", function () {
+      buzzerStarted = true;
+
+      // changeStaredText.style.width = '13vw';
+      changeStaredText.innerHTML = 'Buzzer Started!';
+      showListButton.style.marginLeft = "-10px";
+    });
+
+    socket.on('login', (data) => {
+      if (buzzerStarted && count < limit) {
+        var newItem = document.createElement("li");
+        newItem.textContent = `${data.username}`;
+        newItem.style.marginBottom = "20px";
+        newItem.style.color = "white";
+        newItem.style.boxShadow = "0px 1px 2px rgb(243 209 169 / 50%), 0px 2px 4px rgb(243 209 169 / 50%), 0px 4px 8px rgb(243 209 169 / 50%), 0px 8px 16px rgb(243 209 169 / 50%)";
+        newItem.style.backgroundImage = "linear-gradient(#ffb900,#ff7700)"; 
+        list.appendChild(newItem);
+        newItem.addEventListener("click", function () {
+          var otherItems = list.querySelectorAll("li");
+          otherItems.forEach(function (item) {
+            item.classList.remove("selected");
+          });
+          newItem.classList.add("selected");
+        });
+        count++;
+      }
+    });
+
+    function changeFooterText(newText) {
+                      const footerParagraph = document.querySelector('footer p');
+                      if (footerParagraph) {
+                          footerParagraph.textContent = newText;
+                      } else {
+                          console.error('Footer paragraph not found.');
+                      }
+                  }
+
+
+
+    // Function to show the popup container and hide it after 3 seconds
+    function showPopup() {
+      popupContainer.style.display = "block";
+      setTimeout(function () {
+        popupContainer.style.display = "none";
+      }, 4000); // 3000 milliseconds = 3 seconds
+    }
+
+    function showPopup2() {
+      popupContainer2.style.display = "block";
+      setTimeout(function () {
+        popupContainer2.style.display = "none";
+      }, 4000); // 3000 milliseconds = 3 seconds
+    }
+
+
+
+    // Question format:
+    var questions = [
+  {
+    question: "Q1. ______ is characterized by well-demarcated, symmetric, erythematous plaques with overlying silvery scale.",
+    options: ["A. Recalcitrant Dermatoses", "B. Psoriasis", "C. Contact Dermatitis", "D. Discoid Lupus Erythematosus"],
+    answer: "B. Psoriasis",
+    ref: "Ref:  Kim WB, et al. Can Fam Physician. 2017;63(4):278-285."
+  },
+  {
+    question: "Q2. ______ has a unique powdery appearance with a silvery sheen.",
+    options: ["A. Recalcitrant Dermatoses", "B. Scalp Psoriasis", "C. Contact Dermatitis", "D. Discoid Lupus Erythematosus"],
+    answer: "B. Scalp Psoriasis",
+    ref: "Ref:  Vates Portfolio Product Monograph, February 2016."
+  },
+  {
+    question: "Q3. ______ is characterized by well-demarcated, scaly, erythematous macules or papules that gradually develops into indurated discoid (coin-shaped) plaques with an adherent scale that are painful to remove.",
+    options: ["A. Recalcitrant Dermatoses", "B. Scalp Psoriasis", "C. Contact Dermatitis", "D. Discoid Lupus Erythematosus"],
+    answer: "D. Discoid Lupus Erythematosus",
+    ref: "Ref:  Okon LG & Werth VP. Best Pract Res Clin Rheumatol. 2013;27(3):391-404."
+  },
+  {
+    question: "Q4. ______ is a type of eczema characterized by itchy, blistered, dry and cracked skin.",
+    options: ["A. Recalcitrant Dermatoses", "B. Scalp Psoriasis", "C. Contact Dermatitis", "D. Discoid Lupus Erythematosus"],
+    answer: "C. Contact Dermatitis",
+    ref: "Ref:  NHS. Contact Dermatitis. Available at: https://www.nhs.uk/conditions/contact-dermatitis/"
+  },
+  {
+    question: "Q5. _____ may be irritated or allergic occurring within a few hours or days of exposure to the triggering substance.",
+    options: ["A. Recalcitrant Dermatoses", "B. Scalp Psoriasis", "C. Contact Dermatitis", "D. Discoid Lupus Erythematosus"],
+    answer: "C. Contact Dermatitis",
+    ref: "Ref:  NHS. Contact Dermatitis. Available at: https://www.nhs.uk/conditions/contact-dermatitis/"
+  },
+  {
+    question: "Q6. _____ is characterized by one or more patches of lichenified skin resulting from continuous itching and scratching that may appear leathery with exaggeration marking creases, giving a 'criss-cross' pattern.",
+    options: ["A. Recalcitrant Dermatoses", "B. Scalp Psoriasis", "C. Lichen Simplex Chronicus", "D. Discoid Lupus Erythematosus"],
+    answer: "C. Lichen Simplex Chronicus",
+    ref: "Ref:  https://dermnetnz.org/topics/Lichen-simplex"
+  },
+  {
+    question: "Q7. _____ is characterized by eczematous skin lesions, erythema and intense itching exhibiting relapsing-remitting pattern of disease.",
+    options: ["A. Atopic Dermatitis", "B. Scalp Psoriasis", "C. Lichen Simplex Chronicus", "D. Discoid Lupus Erythematosus"],
+    answer: "A. Atopic Dermatitis",
+    ref: "Ref:  1) Tier HL et al. Dermatol Ther (Heidelb). 2021;11:415-431. 2) Eichenfield LF et al. J Am Acad Dermatol. 2014;70(2):338-351."
+  },
+  {
+    question: "Q8. Early age of onset, personal or family history of atopy, xerosis, and IgE reactivity are four important features of:",
+    options: ["A. Atopic Dermatitis", "B. Acne vulgaris", "C. Psoriasis Rosacea", "D. Guttate Psoriasis"],
+    answer: "A. Atopic Dermatitis",
+    ref: "Ref:  Tier HL et al. Dermatol Ther (Heidelb). 2021;11:415-431."
+  },
+  {
+    question: "Q9. ______ is typically located on the scalp, trunk, buttocks and extremities but can occur anywhere on the body?",
+    options: ["A. Contact Dermatitis", "B. Discoid Lupus Erythematosus", "C. Lichen simplex chronicus", "D. Psoriasis"],
+    answer: "D. Psoriasis",
+    ref: "Ref:  Kim WB, et al. Can Fam Physician. 2017;63(4):278-285."
+  },
+  {
+    question: "Q10. The important feature of Psoriasis is:",
+    options: ["A. Eczema", "B. Scaling plaques", "C. Crusting", "D. Blistering"],
+    answer: "B. Scaling plaques",
+    ref: "Ref:  Kim WB, et al. Can Fam Physician. 2017;63(4):278-285."
+  },
+  {
+    question: "Q11. Acute eruption of 'dew-drop', salmon-pink, fine-scaled, small papules on the trunk or limbs is indicative of?",
+    options: ["A. Pustular Psoriasis", "B. Guttate Psoriasis", "C. Inverse Psoriasis", "D. Erythrodermic Psoriasis"],
+    answer: "B. Guttate Psoriasis",
+    ref: "Ref:  Kim WB, et al. Can Fam Physician. 2017;63(4):278-285."
+  },
+  {
+    question: "Q12. Lichen Simplex Chronicus most commonly occurs in locations that are easy to reach, such as?",
+    options: ["A. Neck and Scalp", "B. Wrists and forearms", "C. Ankles, shins or thighs", "D. All of the above"],
+    answer: "D. All of the above",
+    ref: "Ref:  https://dermnetnz.org/topics/Lichen-simplex"
+  }
+];
+
+    var currentQuestionIndex = 0;
+
+    var questionText = document.getElementById("questionText");
+    var optionsDiv = document.getElementById("options");
+
+
+    
+// Initialize the game record array
+var gameRecords = JSON.parse(localStorage.getItem("gameRecords")) || [];
+
+
+    function displayQuestion(questionObj) {
+      viewButton.style.display="inline-block";
+      questionText.textContent = questionObj.question;
+      optionsDiv.innerHTML = "";
+      questionObj.options.forEach(function (option) {
+        var div = document.createElement("div");
+        div.textContent = option;
+
+        div.classList.add("newOption");
+        div.addEventListener("click", function () {
+       
+          var selectedTable = document.querySelector(".selected");
+          if (selectedTable) {
+            var tableNumber = "Game1 "+selectedTable.textContent;
+
+                 // Determine if the answer is correct
+        var isCorrect = option === questionObj.answer;
+
+          // Create a new record
+          var record = {
+            
+            tableNumber: tableNumber,
+            givenAnswer: option,
+            question: questionObj.question,
+            result: isCorrect ? "correct" : "wrong"
+          };
+
+          // Add the new record to the gameRecords array
+          gameRecords.push(record);
+
+          // Store the updated gameRecords array in localStorage
+          localStorage.setItem("gameRecords", JSON.stringify(gameRecords));
+
+            if (isCorrect) {
+              div.style.color = "white";
+              div.style.backgroundColor = "green";
+              var score = localStorage.getItem(tableNumber) || 0;
+              score = parseInt(score) + 10;
+              localStorage.setItem(tableNumber, score);
+              successAudio.play();
+              clock.pause();
+              $audio.pause();
+              showPopup2();
+            } else {
+              div.style.color = "white";
+              div.style.backgroundColor = "red";
+              highlightCorrectAnswer(questionObj.answer);
+              var score = localStorage.getItem(tableNumber) || 0;
+              score = parseInt(score) + 0;
+              localStorage.setItem(tableNumber, score);
+              wrongAudio.play();
+              clock.pause();
+              $audio.pause();
+              showPopup();
+            }
+          }
+        });
+        optionsDiv.appendChild(div);
+
+   
+      });
+
+      changeFooterText(questionObj.ref);
+
+    }
+
+
+viewButton.addEventListener("click", function()
+{
+  optionsDiv.style.display = "grid";
+  viewButton.style.display="none";
+});
+
+// ** View options button script ***
+
+document.addEventListener('DOMContentLoaded', function() {
+ 
+  var nextQuestionButton = document.getElementById("nextQuestion");
+  var optionsDiv = document.getElementById("options");
+
+  // Initially hide the options div
+  optionsDiv.style.display = "none";
+
+  
+
+  // Next Question button click event
+  nextQuestionButton.addEventListener("click", function() {
+
+   
+      optionsDiv.style.display = "none";
+     
+   
+      
+  });
+});
+
+
+
+
+    function highlightCorrectAnswer(correctAnswer) {
+      var options = optionsDiv.childNodes;
+      options.forEach(function (option) {
+        if (option.textContent === correctAnswer) {
+          option.style.color = "white"; // Highlight the correct answer in green
+          option.style.backgroundColor = "green";
+          // Blink effect
+          option.classList.add('blink');
+          setTimeout(function () {
+            option.classList.remove('blink');
+          }, 20000); // Blink for 10 second
+        }
+      });
+    }
+
+
+    var resultbtn = document.getElementById('result-btn');
+    resultbtn.style.display = "none";
+
+    function nextQuestion() {
+        count = 0;
+        buzzerStarted = false;
+        changeStaredText.innerHTML = 'Start Buzzer';
+        if (currentQuestionIndex < questions.length - 1) {
+      
+          currentQuestionIndex++;
+          displayQuestion(questions[currentQuestionIndex]);
+        } else {
+        
+          questionText.style.display = "none";
+          optionsDiv.style.display = "none";
+          resultbtn.style.display = "block";
+          viewButton.style.display="none";
+          
+      
+      
+        }
+        list.innerHTML = "";
+        document.getElementById("list").style.display = "none";
+
+      clock.reset();
+      document.querySelector('.count').style.fontSize = '4rem';
+document.querySelector('.count').style.top = '10px';
+
+      }
+      displayQuestion(questions[currentQuestionIndex]);
+
+    document.getElementById("nextQuestion").addEventListener("click", nextQuestion);
+
+    var tables = document.querySelectorAll("#list li");
+    tables.forEach(function (table) {
+      table.addEventListener("click", function () {
+        var otherItems = document.querySelectorAll("#list li");
+        otherItems.forEach(function (item) {
+          item.classList.remove("selected");
+        });
+        table.classList.add("selected");
+      });
+    });
+
+    document.getElementById("showListButton").addEventListener("click", function () {
+      let list = document.getElementById("list");
+      list.innerHTML = "";
+      document.getElementById("list").style.display = "block";
+    });
+
+  </script>
+
+
+
+  <script>
+
+
+
+
+   document.getElementById('result-btn').addEventListener('click', function() {
+    // Redirect to result1.html
+    window.location.href = "result1.html";
+    });
+   document.getElementById('nextpagebtn').addEventListener('click', function() {
+    // Redirect to result1.html
+    window.location.href = "result1.html";
+    });
+
+    document.getElementById('backpagebtn').addEventListener('click', function() {
+      // Redirect to result1.html
+      window.location.href = "rule1.html";
+      });
+
+
+    function resetScore() {
+
+      gameRecords = [];
+
+// Remove the gameRecords item from localStorage
+localStorage.removeItem("gameRecords");
+      const keysToRemove = [];
+
+      for (let i = 0; i < localStorage.length; i++) {
+        const key = localStorage.key(i);
+        if (key.startsWith("Game1 Table")) {
+          keysToRemove.push(key);
+        }
+      }
+
+      // Remove the collected keys
+      for (const key of keysToRemove) {
+        localStorage.removeItem(key);
+      }
+    }
+  </script>
+
+  <script src="../../moderator/sound.js"></script>
+
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var audio = document.getElementById('clickSound');
+
+      var startButtons = document.querySelectorAll('.btnBackground');
+      startButtons.forEach(function(startButton) {
+        startButton.addEventListener('click', function(event) {
+          event.preventDefault();
+          audio.play();
+        });
+      });
+
+      document.querySelector('.forwardbtn').addEventListener('click', function(event) {
+        audio.play();
+      });
+
+      document.querySelector('.backwardbtn').addEventListener('click', function(event) {
+        audio.play();
+      });
+
+      document.querySelector('.menu').addEventListener('click', function(event) {
+        audio.play();
+      });
+    });
+    
+    function back() {
+        window.location.href='rule1.html';
+    }
+    </script>
+
+</body>
+
+</html>

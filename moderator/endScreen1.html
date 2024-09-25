@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Safety Information</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Yatra+One&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Merienda:wght@300..900&display=swap');
+
+        body {
+            background-image: url('./images/plain-bg.webp');
+            background-color: #121212;
+            color: white;
+            font-family: "Merienda", cursive;
+            overflow: hidden;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-position: center;
+            background-size: 100% 100%;
+            overflow: hidden;
+        }
+
+        form {
+            width: 20vw;
+            margin: 0 auto;
+            padding: 20px;
+            background: #250808;
+
+            border-radius: 8px;
+            box-shadow: 0 15px 35px rgb(255 219 0);
+            /* text-align: center; */
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="url"] {
+            width: 90%;
+            padding: 10px;
+            border: 1px solid #000000;
+            border-radius: 4px;
+            background-color: #ffffff;
+            color: rgb(0, 0, 0);
+        }
+
+
+
+        li {
+            margin-left: 30px;
+        }
+
+        p {
+            margin-top: 0px;
+        }
+
+
+
+        h1 {
+            background: linear-gradient(to bottom, #cfc09f 27%, #ffecb3 40%, #3A2C0A 86%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            color: #fff;
+            font-family: "Cinzel", serif;
+            position: relative;
+            text-transform: uppercase;
+            font-size: calc(3vw + 0.8rem);
+            margin: 0;
+            font-weight: 400;
+        }
+
+        h1::after {
+            background: none;
+            content: attr(data-heading) "  ";
+            left: 0;
+            top: 0;
+            z-index: -1;
+            position: absolute;
+            text-shadow:
+                -1px 0 1px #c6bb9f,
+                0 1px 1px #c6bb9f,
+                5px 5px 10px rgba(0, 0, 0, 0.4),
+                -5px -5px 10px rgba(0, 0, 0, 0.4);
+        }
+
+        .forwardbtn {
+            background-image: url('./images/forward.png');
+            background-size: cover;
+            background-position: center;
+            border: none;
+            padding: 40px 40px;
+            background-color: transparent;
+            cursor: pointer;
+        }
+
+        .backwardbtn {
+            background-image: url('./images/backward.png');
+            background-size: cover;
+            background-position: center;
+            border: none;
+            padding: 40px 40px;
+            background-color: transparent;
+            cursor: pointer;
+
+        }
+
+        .forwardalign {
+            bottom: 10%;
+            /* padding-top: 40rem; */
+            position: absolute;
+            /* padding-right: 10rem; */
+            /* padding-left: 95rem; */
+            right: 0.5%;
+            display: flex;
+            flex-direction: column;
+        }
+
+       /* Background Music */
+       
+    .btnBackground {
+      background-image: url('./images/resetbut-01.png');
+      background-size: cover;
+      /* Adjust as needed */
+      background-position: center;
+      /* Adjust as needed */
+      /* Additional styling */
+      padding: 17px 45px;
+      border: none;
+      color: rgb(0, 0, 0);
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font: bold;
+      font-size: 16px;
+      background-color: transparent;
+      cursor: pointer;
+      border-radius: 5px;
+      font-family: "Poetsen One", sans-serif;
+      letter-spacing: 0.2px;
+      margin-top: -16px;
+    }
+
+    /* Optional: Hover effect */
+    .btnBackground:active {
+      /* opacity: 0.8; */
+      transform: translateY(2px);
+    }
+
+    .buttonsoundalign {
+      /* justify-content: space-between; */
+      /* display: flex; */
+      position: absolute;
+      bottom: 40%;
+      /* width: 100%; */
+      padding: 0%;
+      z-index: 1000;
+      right: 10px;
+      /* margin: 0px; */
+      margin-right: -10px;
+    }
+
+    .soundright {
+      padding: 20px;
+      right: 20px;
+      /* rotate: 90deg; */
+      margin-right: -3px;
+      background-color: rgb(0 38 2);
+      border: none;
+      border-radius: 10px 0 0 10px;
+      /* box-shadow: 4px 6px 4px red; */
+      cursor: pointer;
+      color: white;
+    }
+
+    .soundleft {
+      padding: 20px;
+      right: 20px;
+      /* rotate: 90deg; */
+      margin-left: -7px;
+      background-color: rgb(0 38 2);
+      border: none;
+      border-radius: 10px 10px 0 0;
+      /* box-shadow: 4px 6px 4px red; */
+      color: white;
+      cursor: pointer;
+      /* padding-bottom: 5px; */
+    }
+
+
+    </style>
+</head>
+
+<body>
+    <audio id="clickSound" src="./sound/click.mp3"></audio>
+
+    <div style=" width: 100%; display:flex; justify-content: center; align-items: center;">
+        <div style=" width: 80%; display: grid;
+    justify-content: center;
+    align-items: center;
+    background-color: #000000ad;
+    padding: 30px;
+    margin-top: 30px;
+    border-radius: 30px;">
+
+<div class="buttonsoundalign">
+    <!-- <button class="soundleft" style="background-color: transparent; color: transparent; border: none;">back</button> -->
+    <button id="volumeup" class="soundright" onclick="backSound()" style="display: block;"> <i
+        class="fas fa-volume-up"></i></button>
+    <button id="volumedown" class="soundright" onclick="backSound2()" style="display: none;"> <i
+        class="fas fa-volume-xmark"></i></button>
+  </div>
+
+            <h1 style="text-align: center; "> Safety information</h1>
+
+
+            <div style="font-size: 0.7rem; font-weight: 900;">
+                <strong>CLOBEVATE:</strong>
+
+
+                <p>Contraindications:</p>
+                <p>The following conditions should not be treated with CLOBEVATE</p>
+                <ul style="display: inline-flex;">
+                    <li style="margin-left: 0px;">Untreated cutaneous infections</li>
+                    <li>Rosacea</li>
+                    <li>Acne vulgaris</li>
+                    <li>Pruritus without inflammation</li>
+                    <li>Perianal and genital pruritus</li>
+                    <li>Perioral dermatitis</li>
+                </ul>
+
+
+
+                <p>
+                    <strong>CLOBEVATE </strong> is contraindicated in dermatoses in children under one year of age,
+                    including dermatitis.<br>
+                    <strong>Adverse Reactions:</strong> Common - Pruritus, local skin burning/skin pain
+                </p>
+
+                <strong>BETNOVATE:</strong>
+                <p>Contraindications:</p>
+                The following conditions should not be treated with BETNOVATE:
+                <ul style="display: inline-flex;">
+                    <li style="margin-left: 0px;">Untreated cutaneous infections</li>
+                    <li>Rosacea</li>
+                    <li>Acne vulgaris</li>
+                    <li>Pruritus without inflammation</li>
+                    <li>Perianal and genital pruritus</li>
+                    <li>Perioral dermatitis</li>
+                </ul>
+                </p>
+
+                <p>
+                    <strong>BETNOVATE:</strong> is contraindicated in dermatoses in infants under one year of age,
+                    including
+                    dermatitis. <br>
+                    <strong>Adverse events:</strong> Common - Pruritus, local skin burning/skin pain
+                </p>
+
+                <strong>Dermovate:</strong>
+                <p>Contraindications:</p>
+                The following conditions should not be treated with DERMOVATE
+                <ul style="display: inline-flex;">
+                    <li style="margin-left: 0px;">Untreated cutaneous infections</li>
+                    <li>Rosacea</li>
+                    <li>Acne vulgaris</li>
+                    <li>Pruritus without inflammation</li>
+                    <li>Perianal and genital pruritus</li>
+                    <li>Perioral dermatitis</li>
+                </ul>
+
+                <p>
+                    <strong>DERMOVATE</strong> is contraindicated in dermatoses in children under one year of age,
+                    including
+                    dermatitis.
+                    Adverse
+                </p>
+                <p>Reactions: Common - Pruritus, local skin burning/skin pain</p>
+
+
+
+
+
+                <strong>Cutivate:</strong>
+                <p>Contraindications:</p>
+                The following conditions should not be treated with CUTIVATE Cream:
+                <ul style="display: inline-flex;">
+                    <li style="margin-left: 0px;">Untreated cutaneous infections</li>
+                    <li>Rosacea</li>
+                    <li>Acne vulgaris</li>
+                    <li>Perioral dermatitis</li>
+                    <li>Perianal and genital pruritus</li>
+                    <li>Pruritus without inflammation</li>
+                    <li>Dermatoses in infants under 3 months of age, including dermatitis and nappy rash</li>
+                </ul>
+
+
+                Adverse events: Common – Pruritus
+
+
+
+
+            </div>
+
+        </div>
+        <div class="forwardalign">
+            <button id="nextpagebtn" onclick="forward()" class="forwardbtn"></button>
+            <button onclick="back()" class="backwardbtn"></button>
+        </div>
+    </div>
+
+     <script>
+    const backgroundAudio = new Audio('sound/Background-Music.mp3');
+
+
+    document.addEventListener('DOMContentLoaded', function () {
+      var audio = document.getElementById('clickSound');
+      var startButtons = document.querySelectorAll('.btnBackground');
+
+      startButtons.forEach(function (startButton) {
+        startButton.addEventListener('click', function (event) {
+          audio.play();
+          event.preventDefault();
+          setTimeout(function () {
+            window.location.href = 'Game3.html';
+          }, 500);
+        });
+      });
+    });
+    function backSound() {
+      console.log("sound play");
+      backgroundAudio.play();
+      volumeup.style.display = 'none';
+      volumedown.style.display = 'block';
+    }
+
+    function backSound2() {
+      console.log("sound pause");
+      backgroundAudio.pause();
+      volumeup.style.display = 'block';
+      volumedown.style.display = 'none';
+    }
+  </script>
+
+  <!-- forward backward and main menu Script -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var audio = document.getElementById('clickSound');
+
+      var startButtons = document.querySelectorAll('.btnBackground');
+      startButtons.forEach(function (startButton) {
+        startButton.addEventListener('click', function (event) {
+          event.preventDefault();
+          audio.play();
+        });
+      });
+
+    //   forward & backward Button 
+      document.querySelector('.forwardbtn').addEventListener('click', function (event) {
+        window.location.href = "qrcode.html";
+        audio.play();
+      });
+
+      document.querySelector('.backwardbtn').addEventListener('click', function (event) {
+        window.location.href = 'thankyou.html';
+        audio.play();
+      });
+
+      document.querySelector('.menu').addEventListener('click', function (event) {
+        audio.play();
+      });
+    });
+
+  </script>
+
+    <!-- <script>
+        function back() {
+            window.location.href = 'thankyou.html';
+            console.log("done");
+        }
+        function forward() {
+            window.location.href = 'qrcode.html';
+            console.log("done");
+        }
+    </script> -->
+
+</body>
+
+</html>

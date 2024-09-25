@@ -1,0 +1,206 @@
+body{
+    margin: 0;
+    padding: 0;
+}
+        /* General Reset */
+        #scoreboard{
+            position: absolute;
+            left: 43%;
+            top: 40%;
+            text-align: -webkit-center;
+            text-decoration: double;
+        }
+        
+                * {
+                    padding: 0;
+                    margin: 0;
+                    box-sizing: border-box;
+                }
+        
+                /* Body Background */
+                .result1Body {
+                    background: url(./images/firstgame.webp);
+                    background-size: 100vw 100vh;
+                    background-repeat: no-repeat;
+                    background-attachment: fixed;
+                    background-position: center;
+                    overflow: hidden;
+                    font-family: Arial, Helvetica, sans-serif;
+                    font-family: "Poetsen One", sans-serif;
+                    font-weight: 400;
+                    font-style: normal;
+                }
+
+                 /* Body Background */
+                 .result2Body {
+                    background: url(./images/secondfinal.webp);
+                    background-size: 100vw 100vh;
+                    background-repeat: no-repeat;
+                    background-attachment: fixed;
+                    background-position: center;
+                    overflow: hidden;
+                    font-family: Arial, Helvetica, sans-serif;
+                    font-family: "Poetsen One", sans-serif;
+                    font-weight: 400;
+                    font-style: normal;
+                }
+
+                .result3Body {
+                    background: url(./images/thirdfinal.webp);
+                    background-size: 100vw 100vh;
+                    background-repeat: no-repeat;
+                    background-attachment: fixed;
+                    background-position: center;
+                    overflow: hidden;
+                    font-family: Arial, Helvetica, sans-serif;
+                    font-family: "Poetsen One", sans-serif;
+                    font-weight: 400;
+                    font-style: normal;
+                }
+                .finalresultBody {
+                    background: url(./images/finalResultBg.webp);
+                    background-size: 100vw 100vh;
+                    background-repeat: no-repeat;
+                    background-attachment: fixed;
+                    background-position: center;
+                    overflow: hidden;
+                    font-family: Arial, Helvetica, sans-serif;
+                    font-family: "Poetsen One", sans-serif;
+                    font-weight: 400;
+                    font-style: normal;
+                }
+        
+                /* Main Container */
+                .main {
+                    width: 100%;
+                    height: 100vh;
+                }
+        
+                /* Navigation Bar */
+                .nav {
+                    display: flex;
+                    justify-content: space-between;
+                    padding: 2% 5%;
+                }
+        
+                .nav img {
+                    width: 12%;
+                }
+        
+                /* Result Div */
+                .resultDiv {
+                    display: flex;
+                    width: 100%;
+                    justify-content: center;
+                    position: relative;
+                }
+        
+                .resultDiv img {
+                    width: 70%;
+                    height: auto;
+                }
+        
+                
+                /* New Effect Styling */
+                .con {
+                    position: absolute;
+                    top: 50%;
+                    left: 56%;
+                    transform: translate(-50%, -50%);
+                    text-align: center;
+                    width: 70%;
+                }
+        
+                /* List Container */
+                .list-container {
+                    margin: 2% 0;
+                }
+        
+                
+        
+                tr{
+                 /* margin-left: -2rem; */
+                }
+                td{
+                    padding: 0.3rem 1rem;
+                    font-size: 1.8vw;
+                    padding-left: 5px;
+                }
+        
+        .resultDiv {
+            background-image: url(./images/resultBg.webp);
+            background-size: 57vw 80vh;
+            background-position: center;
+            background-repeat: no-repeat;
+            padding: 10rem 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 70vw;
+        }
+        
+        
+        #scoreboard {
+          
+            padding: 1rem;
+            border-radius: 10px;
+        }
+        
+        #scoreTable {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        #scoreTable th, #scoreTable td {
+           
+            padding: 8px;
+           
+        }
+        .forNextBtn {
+            width: 15vw;
+            /* height: auto; */
+            /* position: relative; */
+            /* text-align: center; */
+            /* bottom: 2vw; */
+            position: absolute;
+            bottom: 15%;
+            left: 43%;
+        
+            background-image: url('../moderator/images/Vector.png');
+            background-size: cover;
+            background-position: center;
+            border: none;
+            padding: 20px 20px;
+            background-color: transparent;
+            cursor: pointer;
+        
+        }
+            
+        .soundright {
+            padding: 20px;
+            right: 20px;
+            /* rotate: 90deg; */
+            /* margin-right: -3px; */
+            background-color: rgb(0 38 2);
+            border: none;
+            border-radius: 10px 0 0 10px;
+            /* box-shadow: 4px 6px 4px red; */
+            cursor: pointer;
+            color: white;
+        }      
+
+
+
+        .buttonsoundalign{
+
+            /* justify-content: space-between; */
+            /* display: flex; */
+            position: absolute;
+            bottom: 1%;
+            /* width: 100%; */
+            padding: 0%;
+            z-index: 1000;
+            right: 10px;
+            /* margin: 0px; */
+    margin-right: -10px;
+        }

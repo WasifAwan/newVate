@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Example</title>
+    <style>
+        body { 
+            background-image: url('../moderator/images/plain-bg.webp');
+            background-color: #121212;
+            color: white;
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+            background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: 100% 100%;
+    overflow: hidden;
+        }
+        form {
+            width: 20vw;
+            margin: 0 auto;
+            padding: 20px;
+            background: #250808;
+
+            border-radius: 8px;
+            box-shadow: 0 15px 35px rgb(255 219 0);
+            /* text-align: center; */
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input[type="text"], input[type="url"] {
+            width: 90%;
+            padding: 10px;
+            border: 1px solid #000000;
+            border-radius: 4px;
+            background-color: #ffffff;
+            color: rgb(0, 0, 0);
+        }
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            color: #000000;
+            background-image: linear-gradient(147deg, #ffd21d 0%, #f73600 100%);
+            font-size: 1rem;
+            font-weight: bolder;
+            cursor: pointer;
+            width: 40%;
+        }
+        button:hover {
+            background-color: #4a1d08;
+        }
+    </style>
+</head>
+<body >
+    <div style=" width: 100%; display:flex ; align-items: center; height: 100vh; ">
+       
+    <form id="dataForm">
+        <div style="text-align: center; width: 100%;" ><h1>Registration Form</h1></div>
+        <div class="form-group">
+            
+            <label for="moc">MOC Name: </label>
+            <input type="text" id="moc" name="moc" required placeholder="Enter Name">
+        </div>
+        <div class="form-group">
+            <label for="cityname">City Name:</label>
+            <input type="text" id="cityname" name="cityname" required placeholder="Enter City">
+        </div>
+        <div class="form-group">
+            <label for="link">Link Name: <span>(Ex. Vate1 or Vate2 )</span></label>
+            <input type="text" id="link" name="link" required placeholder="Enter Link">
+        </div>
+
+        <div style="width: 100%; display: flex; justify-content: space-evenly;">
+            <button type="submit">SUBMIT</button>
+            <button type="button" id="skipButton">SKIP</button>
+        </div>
+        
+        
+    </form>
+
+    
+
+</div>
+
+
+    <!-- Import the Firebase SDKs -->
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.4/firebase-app.js";
+        import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/10.12.4/firebase-database.js";
+
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyBsF20FwAzhR1mzDTxaPuYjJi54RX0vicU",
+            authDomain: "vate-odyssey.firebaseapp.com",
+            projectId: "vate-odyssey",
+            storageBucket: "vate-odyssey.appspot.com",
+            messagingSenderId: "450682370240",
+            appId: "1:450682370240:web:9102bbed271c02e7bf9525"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const database = getDatabase(app);
+
+        // Function to format date and time
+        function formatDateTime() {
+            const now = new Date();
+            const day = now.getDate();
+            const month = now.getMonth() + 1; // Months are zero-based
+            const year = now.getFullYear();
+            const hours = now.getHours();
+            const minutes = now.getMinutes();
+            const period = hours >= 12 ? 'PM' : 'AM';
+
+            // Convert hours from 24-hour to 12-hour format
+            const formattedHours = hours % 12 || 12;
+            const formattedMinutes = minutes.toString().padStart(2, '0');
+            
+            // Format the date-time string
+            return `${day}-${month}-${year}_${formattedHours}-${formattedMinutes}-${period}`;
+        }
+
+        // Add event listener to the form
+        document.getElementById('dataForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const moc = document.getElementById('moc').value;
+            const cityname = document.getElementById('cityname').value;
+            const link = document.getElementById('link').value;
+
+            // Generate a formatted date-time string
+            const formattedDateTime = formatDateTime();
+
+            // Sanitize the link for Firebase
+            const formattedLink = link.replace(/[^a-zA-Z0-9]/g, '_'); // Replace invalid characters
+
+            // Create a reference with formatted date-time and link
+            const dataRef = ref(database,formattedLink+ '_' + formattedDateTime );
+            
+            localStorage.setItem("database_node", formattedLink+ '_' + formattedDateTime);
+            // Save data to Firebase Realtime Database
+            set(dataRef, {
+                moc: moc,
+                cityname: cityname,
+                link: link,
+                timestamp: formattedDateTime
+            }).then(() => {
+                alert('Data saved successfully!');
+                window.location.href = "main.html";
+            }).catch((error) => {   
+                console.error('Error saving data:', error);
+            });
+        });
+    </script>
+
+<script>
+    document.getElementById('skipButton').addEventListener('click', function() {
+        // Ask for confirmation
+        var confirmation = confirm("Are you sure you want to skip?");
+        
+        // If user confirms, navigate to main.html
+        if (confirmation) {
+            window.location.href = "main.html";
+        }
+    });
+    </script>
+</body>
+</html>

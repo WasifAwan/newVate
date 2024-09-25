@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="../modstyle.css">
+  <!-- <link rel="stylesheet" href="../timer.css"> -->
+  <!-- <link rel="stylesheet" href="../menu.css"> -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poetsen+One&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <title>Game 2 question</title>
+  <script src="../worker.js"></script>
+  <style>
+    /* Hide options by default */
+#options {
+  display: none;
+}
+    .football_anim {
+      transition: transform 3s ease;
+      /* Define a CSS transition for the transform property */
+    }
+    *{
+        scrollbar-width: thin;
+    scrollbar-color: #ad0000 #ffb900;
+
+    }
+
+    .light{
+        background-color: #ffb900;
+    }
+
+    select:active{
+        background: #000;
+    }
+
+    .select2-container--default .select2-results__option--highlighted[aria-selected] {
+        background-color:green;
+
+}
+
+/* turn it off completely */
+select:active, select:hover {
+  outline: none
+}
+
+/* make it red instead (with with same width and style) */
+select:active, select:hover {
+  outline-color: red
+}
+.blink {
+      animation: blinker 1s linear infinite;
+    }
+
+    @keyframes blinker {
+      50% {
+        opacity: 0;
+      }
+    }
+
+    .forwardalign {
+    bottom: 10%;
+    /* padding-top: 40rem; */
+    position: absolute;
+    /* padding-right: 10rem; */
+    /* padding-left: 95rem; */
+    right: 0.5%;
+    display: flex;
+    flex-direction: column;
+}
+  </style>
+
+</head>
+
+<body class="secondgame" style="overflow: hidden;">
+  <audio id="clickSound" src="../sound/click.mp3"></audio>
+  <!-- <div class="banner">
+    <img src="../images/game1banner.png">
+
+  </div> -->
+
+  <!-- FOR Sound👇 and Back -->
+  <div class="buttonsoundalign">
+
+ 
+
+    <button id="volumeup" class="soundright" onclick="backSound()" style="display: block;"> <i
+        class="fas fa-volume-up"></i></button>
+    <button id="volumedown" class="soundright" onclick="backSound2()" style="display: block;"> <i
+        class="fas fa-volume-xmark"></i></button>
+
+  </div>
+  <!-- FOR Sound☝and Back  -->
+
+  
+    <div class="clock-wrap input-btn" data-action="start">
+      <div class="clock pro-0">
+        <span class="count">15</span>
+      </div>
+    </div>
+ 
+ 
+
+  <div class="maincontainer" style="justify-content: center;">
+
+
+    <div class="questionConatiner">
+      <div style=" height: auto; position: relative; text-align: center;">
+        <img style="display: block; height: 78vh;" class="questionbackimage" src="../images/Back.webp" alt="" srcset="">
+
+
+
+        <div  style="position: absolute; top: 50%; left: 50%; transform: translate(-84.5%, -50%);
+    width: 46vw;">
+
+          <div style="display: inline-flex; align-items: center; justify-content: center; margin-left: 4.8vw;">
+            <div>
+              <div id="question" class="questionshape">
+                <!-- <h3 style="margin-bottom: 0rem !important;">Question:</h3> -->
+                <h3 class="questionText" id="questionText"></h3>
+              </div>
+
+              <div>
+                <!-- View button -->
+                <button id="viewButton" class="btnBackground">See Options</button>
+              </div>
+              <div id="options" style="display: none;">
+                <button class="newOption ">Options 1</button>
+                <button class="newOption">Options 2</button>
+                <button class="newOption">Options 3</button>
+                <button class="newOption">Options 4</button>
+              </div>
+            </div>
+
+            <h1 id="result-btn" >It's time to see the score</h1>
+          </div>
+
+ 
+          
+
+        </div>
+        <div  style="position: absolute; top: 50%; left: 50%; transform: translate(105%, -50%);">
+          <div class="buzzer-outer">
+            <div class="tablebuzzer" style="width: 100%;">
+       
+                <div  style="width: 100%;  ">
+                  
+                    <div class="content">
+                        <!-- <h2>Select Team</h2> -->
+                        <form class="form" id="loginForm">
+                          <div class="inputBox" style="width: 100%;
+                          padding: 10px;
+                          font-size: 16px;
+                        
+                          border: none;
+                          color: white;
+                          border-radius: 4px;
+                          background-image: linear-gradient(rgb(255, 239, 8), rgb(255, 162, 0));
+                          outline: none;
+                          transition: border-color 0.3s;">
+                          
+                            <select
+                              id="userSelect"
+                              class="contact--input text-md dropdown"
+                              multiple
+                              style="width: 100%;
+                                  font-size: 1.5rem;
+                                  text-align: center;
+                                  border: none;
+  font-family: fantasy;
+  color:rgb(0, 0, 0);
+  background-color: transparent;"
+                            >
+                              <option class="light select2-container--default" value="Table 1">Table 1</option>
+                              <option class="dark" value="Table 2">Table 2</option>
+                              <option class="light" value="Table 3">Table 3</option>
+                              <option class="dark" value="Table 4">Table 4</option>
+                              <option class="light" value="Table 5">Table 5</option>
+                              <option class="dark" value="Table 6">Table 6</option>
+                              <option class="light" value="Table 7">Table 7</option>
+                              <option class="dark" value="Table 8">Table 8</option>
+                              <option class="light" value="Table 9">Table 9</option>
+                              <option class="dark" value="Table 10">Table 10</option>
+                              <option class="light" value="Table 11">Table 11</option>
+                              <option class="dark" value="Table 12">Table 12</option>
+                              <option class="light" value="Table 13">Table 13</option>
+                              <option class="dark" value="Table 14">Table 14</option>
+                              <option class="light" value="Table 15">Table 15</option>
+                              <option class="dark" value="Table 16">Table 16</option>
+                              <option class="light" value="Table 17">Table 17</option>
+                              <option class="dark" value="Table 18">Table 18</option>
+                              <option class="light" value="Table 19">Table 19</option>
+                              <option class="dark" value="Table 20">Table 20</option>
+                            </select>
+                          </div>
+                         
+                        </form>
+                      </div>
+                      <div class="forList" >
+    
+                          <ul id="list1" class="userListContent" >
+
+                            
+                          </ul>
+                      </div>
+                </div>
+    
+                <div class="forBtn" style="flex-direction: column; position: relative;">
+                  <button id="selectButton" class="btnBackground " >Select Table</button>
+                  <button id="clearButton" class="btnBackground "  >Clear List</button>
+                </div>
+        
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="next-backbuttonalign">
+          <button class="btnBackground backalign" onclick="resetScore();">Reset Score</button>
+         
+          <!-- pop-up  -->
+          <button  class="btnBackground nextalign" id="nextQuestion">Next Question</button>
+        </div>
+
+
+      </div>
+
+
+
+    </div>
+
+
+    
+    <!-- For Options 👇 GIFs  For GIFs  For GIFs  For GIFs  For GIFs  For GIFs -->
+
+    <div id="popupContainer" style="display: none;">
+      <!-- <div id="popupContainer" style="display: block;"> -->
+      <div id="gifPopup">
+
+        <img id="gifImage" src="../images/wrong-size-change.gif" alt="GIF Image">
+      </div>
+    </div>
+
+    <div id="popupContainer2" style="display: none;">
+      <!-- <div id="popupContainer2" style="display: block;"> -->
+      <div id="gifPopup2">
+
+        <img id="gifImage2" src="../images/correct-size-change.gif" alt="GIF Image">
+      </div>
+    </div>
+
+
+      <!-- For Options☝ GIFs  For GIFs  For GIFs  For GIFs  For GIFs  For GIFs -->
+
+    <!-- <div class="mainmenu">
+      <a href="/moderator/main.html">
+        <button class="menu"></button>
+      </a>
+    </div> -->
+
+    <div class="forwardalign">
+      <button id="nextpagebtn" class="forwardbtn"></button>
+      <button class="backwardbtn " onclick="back()"></button>
+    </div>
+
+   <!-- For Doctor 👇 GIF  -->
+      <div style="position: absolute; left: .5%; bottom: 1%;">
+       <img src="../images/Doctor.gif" alt="Doctor GIF" id="doctorGif" style="width: 22vw;">
+       
+      </div>
+  </div>
+
+  <footer>
+    <p style="font-size: 12px; color: white;"> </p>
+</footer>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+ 
+  <script>
+var viewButton = document.getElementById("viewButton");
+
+var resultbtn = document.getElementById('result-btn');
+resultbtn.style.display = "none";
+var popupContainer = document.getElementById('popupContainer');
+var popupContainer2 = document.getElementById('popupContainer2');
+
+      var list1 = document.getElementById("list1");
+      var buttons = document.querySelectorAll("#tables-con button");
+      var limit = 5;
+      var count = 0;
+    //   var buzzerStarted = false;
+    //   const socket = io();
+    // var changeStaredText=  document.getElementById("showListButton")
+
+
+    const wrongAudio = new Audio('../sound/wrong-answer-Buzzer.mp3'); // Load the wrong answer sound file
+        const successAudio = new Audio('../sound/Winning.mp3'); // Load the success sound file
+
+  
+
+
+// Changing FooterText  Changing FooterText Changing FooterText  Changing FooterText Changing FooterText  Changing FooterText
+function changeFooterText(newText) {
+                      const footerParagraph = document.querySelector('footer p');
+                      if (footerParagraph) {
+                          footerParagraph.textContent = newText;
+                      } else {
+                          console.error('Footer paragraph not found.');
+                      }
+                  }
+
+
+
+ // Function to show the popup container and hide it after 3 seconds
+ function showPopup() {
+    popupContainer.style.display = "block";
+    setTimeout(function() {
+      popupContainer.style.display = "none";
+    }, 4000); // 3000 milliseconds = 3 seconds
+  }
+
+  function showPopup2() {
+    popupContainer2.style.display = "block";
+    setTimeout(function() {
+      popupContainer2.style.display = "none";
+    }, 4000); // 3000 milliseconds = 3 seconds
+  }
+
+
+  var questions = [
+  {
+    question: "Select Three Tables to Continue",
+    options: [" ", " ", " ", ""],
+
+  },
+  {
+    question: "Q1. Dermovate ointment was significantly more effective than betamethasone dipropionate (BDP) after_____of treatment.",
+    options: ["A. 4 weeks", "B. 3 weeks", "C. 2 weeks", "D. 1 week"],
+    answer: "C. 2 weeks",
+    ref: "Ref:  Jacobson C et al. Cutis. 1986;37(3):213-220"
+  },
+  {
+    question: "Q2. Safety and ____ of Dermovate is characterized over 50 years.",
+    options: ["A. Tolerability", "B. Efficacy", "C. Toxicity", "D. Potency"],
+    answer: "A. Tolerability",
+    ref: "Ref:  Dermovate (Clobetasol propionate) prescribing information, version number GDS 16/IPI 10 date of issue 25 May 2022. Weaver J. Memorandum: Dept Health and Human Services; Public Health Service; Food and Drug Administration; Centre of Drug Evaluation and Research. Published July 2001. Quirke V. Stud Hist Philos Biol Biomed Sci. 2005;36(4):645-674."
+  },
+  {
+    question: "Q3. Dermovate is indicated for:",
+    options: ["A. Psoriasis", "B. Recalcitrant dermatoses", "C. Discoid lupus erythematosus", "D. All of the above"],
+    answer: "D. All of the above",
+    ref: "Ref:  Dermovate (Clobetasol propionate) prescribing information, version number GDS 16/IPI 10 date of issue 25 May 2022."
+  }, 
+  {
+    question: "Q4. Cutivate cream significantly improved symptoms in children with ______ AD compared with hydrocortisone 17-butyrate (HCB) 0.1%.",
+    options: ["A. Moderate", "B. Severe", "C. Mild-to-moderate", "D. Moderate-to-severe"],
+    answer: "D. Moderate-to-severe",
+    ref: "Ref:  Cutivate (Fluticasone propionate) Ointment Prescribing information, version number GDS 15/IPI 04 date of issue 22nd May 2020."
+  },
+  {
+    question: "Q5. Both Betnovate cream and fluticasone propionate (FP) were effective and well tolerated for ______ psoriasis.",
+    options: ["A. Mild-to-moderate", "B. Moderate", "C. Moderate-to-severe", "D. Severe"],
+    answer: "C. Moderate-to-severe",
+    ref: "Ref:  Callen J. Cutis. 1996;57(25):45-50."
+  },
+  {
+    question: "Q6. Betnovate cream provided rapid and progressive relief for Steroid Responsive Dermatoses (SRDs) over ______.",
+    options: ["A. 7 days", "B. 14 days", "C. 21 days", "D. 28 days"],
+    answer: "C. 21 days",
+    ref: "Ref:  Viglioglia P et al. J Int Med Res. 1990;18(6):460-467."
+  },
+  {
+    question: "Q7. Cutivate has a proven efficacy in treatment of acute flares in ______.",
+    options: ["A. Atopic dermatitis", "B. Eczema", "C. Recalcitrant dermatoses", "D. Discoid lupus erythematosus"],
+    answer: "A. Atopic dermatitis",
+    ref: "Ref:  Cutivate (Fluticasone propionate) Ointment Prescribing information, version number GDS 15/IPI 04 date of issue 22nd May 2020. Lebwohl M. Cutis. 1996;57(2 Suppl):62-68. Bleehan SS et al. Br J Dermatol. 1995;133(4):592-597. Jamkhedkar P et al. Indian J Dermatol Venereol Leprol. 1996;62:289-294."
+  },
+  {
+    question: "Q8. Cutivate cream ranked _____ for cosmetic elegance by investigators against 5 other TCSs, including mometasone furoate (MMF).",
+    options: ["A. Most favorable", "B. Least favorable", "C. Most unfavorable", "D. Moderately favorable"],
+    answer: "A. Most favorable",
+    ref: "Ref:  Hadzija BW, Ambrose WW. Cutis. 1996;57:13-18."
+  },
+  {
+    question: "Q9. Clobevate is a _____ topical corticosteroid effective for a range of difficult-to-treat SRDs.",
+    options: ["A. Potent", "B. Less potent", "C. Very potent", "D. None of the above"],
+    answer: "C. Very potent",
+    ref: "Ref:  Clobevate (Clobetasol propionate) datasheet version number GDS 15/IPI 08 date of issue 15th July 2020."
+  }
+];
+
+      
+      var currentQuestionIndex = 0;
+      const listElement = document.getElementById('list1');
+
+      var questionText = document.getElementById("questionText");
+      var optionsDiv = document.getElementById("options");
+// Initialize the game record array
+var game2Records = JSON.parse(localStorage.getItem("game2Records")) || [];
+
+
+      function displayQuestion(questionObj) {
+        questionText.textContent = questionObj.question;
+        optionsDiv.innerHTML = "";
+        questionObj.options.forEach(function (option) {
+          var div = document.createElement("div");
+          div.textContent = option;
+
+      
+
+          
+//<!-- adding class list -->
+
+
+div.classList.add("newOption");
+          div.addEventListener("click", function () {
+         
+            var selectedTable = document.querySelector(".selected");
+            if (selectedTable) {
+              var tableNumber = "Game2 "+selectedTable.textContent;
+              var isCorrect = option === questionObj.answer;
+              // Create a new record
+        var record = {
+          question: questionObj.question,
+          tableNumber: tableNumber,
+          givenAnswer: option,
+          result: isCorrect ? "correct" : "wrong"
+        };
+
+        // Add the new record to the game2Records array
+        game2Records.push(record);
+
+
+        // Store the updated game2Records array in localStorage
+        localStorage.setItem("game2Records", JSON.stringify(game2Records));
+
+              if (isCorrect) {
+                div.style.color = "white";
+                div.style.backgroundColor = "green";
+                var score = localStorage.getItem(tableNumber) || 0;
+                score = parseInt(score) + 10;
+                localStorage.setItem(tableNumber, score);
+                successAudio.play();
+                clock.pause();
+              $audio.pause();
+                showPopup2();
+              } else {
+                div.style.color = "white";
+                div.style.backgroundColor = "red";
+                highlightCorrectAnswer(questionObj.answer);
+                var score = localStorage.getItem(tableNumber) || 0;
+                score = parseInt(score) + 0;
+                localStorage.setItem(tableNumber, score);
+                wrongAudio.play();
+                clock.pause();
+              $audio.pause();
+                showPopup();
+              }
+            }
+          });
+          optionsDiv.appendChild(div);
+        });
+        optionsDiv.style.display = "none";
+
+// Show the view button unless it's the last question
+if (currentQuestionIndex < questions.length) {
+  viewButton.style.display = "inline-block";
+} else {
+  resultbtn.style.display = "block";
+  viewButton.style.display = "none";
+  nextQuestionButton.style.display = "none";
+}
+
+changeFooterText(questionObj.ref);
+      }
+
+      var clickCount =0;
+      function nextQuestion() {
+        
+// document.getElementById("resetTimerInput").setAttribute("data-action","reset");
+clock.reset();
+        if ( listElement.children.length < 3) {
+            alert("Plz Select 3 Tables First")
+        }
+        else{
+
+                options.style.display ="grid";
+            clickCount++;
+            count = 0;
+            // buzzerStarted = false;
+            if (currentQuestionIndex < questions.length - 1) {
+                currentQuestionIndex++;
+                displayQuestion(questions[currentQuestionIndex]);
+                list1.children[0].classList.add("selected");
+                
+                // Select the items based on the click count
+                if (clickCount  < 4) {
+                    // If clicked less than five times, select the first item and remove selections from others
+                    listElement.children[0].classList.add("selected");
+                    listElement.children[1].classList.remove("selected");
+                    listElement.children[2].classList.remove("selected");
+                } else if (clickCount >= 4 && clickCount < 7) {
+                    // If clicked between five and eight times, select the second item and remove selections from others
+                    listElement.children[0].classList.remove("selected");
+                    listElement.children[1].classList.add("selected");
+                    listElement.children[2].classList.remove("selected");
+                } else if (clickCount >= 7 && clickCount <= 10) {
+                    // If clicked between nine and twelve times, select the third item and remove selections from others
+                    listElement.children[0].classList.remove("selected");
+                    listElement.children[1].classList.remove("selected");
+                    listElement.children[2].classList.add("selected");
+                }
+            } else {
+                // If all questions have been displayed, hide the question and options
+                questionText.style.display = "none";
+                optionsDiv.style.display = "none";
+                resultbtn.style.display = "block";
+                viewButton.style.display = "none";
+            }
+
+        }
+        document.querySelector('.count').style.fontSize = '4rem';
+        document.querySelector('.count').style.top = '10px';
+
+}
+
+// ** View options button script ***
+
+document.addEventListener('DOMContentLoaded', function() {
+  
+  var nextQuestionButton = document.getElementById("nextQuestion");
+  var optionsDiv = document.getElementById("options");
+  var resultBtn = document.getElementById("result-btn");
+  var currentQuestionIndex = 0;
+
+  // Initially hide the options div and results button
+  optionsDiv.style.display = "none";
+  resultBtn.style.display = "none";
+  viewButton.style.display = "none";
+
+  // View button click event
+  viewButton.addEventListener("click", function() {
+    optionsDiv.style.display = "grid";
+    viewButton.style.display = "none";
+  });
+
+ });
+
+function highlightCorrectAnswer(correctAnswer) {
+      var options = optionsDiv.childNodes;
+      options.forEach(function (option) {
+        if (option.textContent === correctAnswer) {
+          option.style.color = "white"; // Highlight the correct answer in green
+          option.style.backgroundColor = "green";
+          // Blink effect
+          option.classList.add('blink');
+          setTimeout(function () {
+            option.classList.remove('blink');
+          }, 20000); // Blink for 10 second
+        }
+      });
+    }
+      displayQuestion(questions[currentQuestionIndex]);
+
+      document.getElementById("nextQuestion").addEventListener("click", nextQuestion);
+//       resultbtn.addEventListener('click', function() {
+//   // Redirect to result1.html
+//   window.location.href = "result2.html";
+// });
+  </script>
+
+
+  <!-- JavaScript for popup menu -->
+  <script>
+    let popup = document.getElementById('popup')
+
+    function openPopup() {
+      popup.classList.add('open-popup')
+
+    }
+
+    function closePopup() {
+      popup.classList.remove('open-popup')
+    }
+  </script>
+<script>
+ 
+
+document.getElementById('nextpagebtn').addEventListener('click', function() {
+  // Redirect to result1.html
+  window.location.href = "result2.html";
+});
+
+function back() {
+        window.location.href='Game2.html';
+    }
+
+function resetScore() {
+    const keysToRemove = [];
+    game2Records = [];
+
+// Remove the gameRecords item from localStorage
+localStorage.removeItem("game2Records");
+    for (let i = 0; i < localStorage.length; i++) {
+        const key = localStorage.key(i);
+        if (key.startsWith("Game2 Table")) {
+            keysToRemove.push(key);
+        }
+    }
+
+    // Remove the collected keys
+    for (const key of keysToRemove) {
+        localStorage.removeItem(key);
+    }
+}
+</script>
+<script>
+   document.getElementById('selectButton').addEventListener('click', function() {
+            const selectElement = document.getElementById('userSelect');
+            const selectedOptions = Array.from(selectElement.selectedOptions);
+            const userList = document.getElementById('list1');
+
+            // Check if no options are selected
+            if (selectedOptions.length === 0) {
+                alert('Please select a table first');
+                return;
+            }
+
+            // Get the existing users in the list
+            const existingUsers = Array.from(userList.children).map(li => li.textContent);
+
+            // Iterate over selected options
+            selectedOptions.forEach(option => {
+                // If the selected user is already in the list or if there are already 3 users, do nothing
+                if (existingUsers.includes(option.value) || existingUsers.length >= 3) {
+                  
+                    return;
+
+                }
+
+                // Create a new list item for the selected user
+                const li = document.createElement('li');
+                li.textContent = option.value;
+                userList.appendChild(li);
+                existingUsers.push(option.value); // Update existingUsers list to prevent duplicates in this loop
+            });
+        });
+
+        document.getElementById('clearButton').addEventListener('click', function() {
+            const userList = document.getElementById('list1');
+            userList.innerHTML = '';
+        });
+  
+      </script>
+
+      <script>
+        document.addEventListener('DOMContentLoaded', function() {
+          var audio = document.getElementById('clickSound');
+    
+          var startButtons = document.querySelectorAll('.btnBackground');
+          startButtons.forEach(function(startButton) {
+            startButton.addEventListener('click', function(event) {
+              event.preventDefault();
+              audio.play();
+            });
+          });
+    
+          document.querySelector('.forwardbtn').addEventListener('click', function(event) {
+            audio.play();
+          });
+    
+          document.querySelector('.backwardbtn').addEventListener('click', function(event) {
+            audio.play();
+          });
+    
+          document.querySelector('.menu').addEventListener('click', function(event) {
+            audio.play();
+          });
+        });
+        
+        </script>
+    
+
+<script src="../../moderator/sound.js"></script>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script src="../timer.js"></script>
+  </body>
+</html>
